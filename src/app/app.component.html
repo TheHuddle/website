@@ -1,0 +1,18 @@
+<app-navbar
+    id='navbar'
+    (toggleMenuEvent)="sidenav.toggle()"
+    ></app-navbar>
+<mat-drawer-container id="app-container" autosize>
+  <mat-drawer
+    #sidenav
+    class="app-sidenav"
+    mode="over"
+    >
+    <app-navlinks
+        (closeMenuEvent)="sidenav.close()"
+        ></app-navlinks>
+  </mat-drawer>
+  <div id='app-content'>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

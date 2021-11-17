@@ -1,0 +1,7 @@
+{
+	"extends": ["tslint:recommended", "tslint-angular"],
+	"rules": {
+		"no-trailing-whitespace": true,
+		"trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
+	}
+}

@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <span id='route-indicator' *ngIf="loggedIn">
+    <button mat-icon-button class="menu"
+      matTooltip="main menu"
+      matTooltipClass="tooltip"
+      matTooltipShowDelay="500"
+      matTooltipHidDelay="200"
+      (click)="toggleMenu()"
+      >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span id='route-indicator'>
+      <span class='bold'>The Huddle</span>
+      <span class='route-spacer'>&gt;</span>
+      {{tabTitle}}
+    </span>
+  </span>
+  <span *ngIf="loggedIn">
+    <button mat-icon-button id="profile"
+      matTooltip="see / edit your profile"
+      matTooltipClass="tooltip"
+      matTooltipShowDelay="500"
+      matTooltipHidDelay="200"
+      >
+      <mat-icon>person</mat-icon>
+    </button>
+    <button mat-icon-button id="discord"
+      matTooltip="goto :discord"
+      matTooltipClass="tooltip"
+      matTooltipShowDelay="500"
+      matTooltipHidDelay="200"
+      >
+      <mat-icon>discord</mat-icon>
+    </button>
+    <button mat-button id="logout-button"
+      (click)="logout()"
+      matTooltip="get outta here!"
+      matTooltipClass="tooltip"
+      matTooltipShowDelay="500"
+      matTooltipHidDelay="200"
+      ><mat-icon>logout</mat-icon>
+    </button>
+  </span>
+  <span *ngIf="!loggedIn" style='width:100%; text-align: center'>
+    <span class='bold'>The Huddle</span>
+  </span>
+</mat-toolbar>
