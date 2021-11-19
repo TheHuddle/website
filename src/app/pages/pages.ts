@@ -7,21 +7,25 @@ export const Pages = [
     {
       route: '/home',
       title: 'Home',
+      public: false,
       component: HomeComponent,
     },
     {
       route: '/code-of-conduct',
       title: 'Code of Conduct',
+      public: true,
       component: CodeOfConductComponent,
     },
     {
       route: '/events',
       title: 'Events',
+      public: false,
       component: EventsComponent,
     },
     {
       route: '/contact',
       title: 'Contact',
+      public: true,
       component: ContactComponent,
     },
 ]

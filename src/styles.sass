@@ -1,3 +1,7 @@
+/* ---------------------------------------------------------------------
+   Manually Retrieved Theme / Global Variables
+   */
+
 $primary: #7B1FA2
 $accent: #69F0AE
 $warn: #F44336
@@ -5,6 +9,11 @@ $warn: #F44336
 $gray-1: #2a2a2a
 $gray-2: #0d0d0d
 $gray-3: #3d3d3d
+
+
+/* ---------------------------------------------------------------------
+   Scrollbar and Body/HTML Settings
+   */
 
 body, html
   margin: 0
@@ -20,28 +29,28 @@ body, html
   scrollbar-shadow-color: $gray-1
   scrollbar-dark-shadow-color: $gray-1
 
-::-webkit-scrollbar 
+::-webkit-scrollbar
  width: 8px
  height: 3px
 
-::-webkit-scrollbar-button 
+::-webkit-scrollbar-button
   background-color: $gray-3
 
-::-webkit-scrollbar-track 
+::-webkit-scrollbar-track
   background-color: $gray-1
 
-::-webkit-scrollbar-track-piece 
+::-webkit-scrollbar-track-piece
  background-color: $gray-2
 
-::-webkit-scrollbar-thumb 
+::-webkit-scrollbar-thumb
  height: 50px
  background-color: $gray-3
  border-radius: 3px
 
-::-webkit-scrollbar-corner 
+::-webkit-scrollbar-corner
  background-color: $gray-1
 
-::-webkit-resizer 
+::-webkit-resizer
  background-color: $gray-3
 
 .italic
@@ -50,7 +59,12 @@ body, html
 .bold
   font-weight: 600
 
-a
+
+/* ---------------------------------------------------------------------
+   Global Style Settings
+   */
+
+.hyperlink
   text-decoration: none
   color: $accent
 
@@ -67,3 +81,22 @@ a
   background: $accent
   color: $gray-2 !important
   font-size: 16px
+
+
+.page-container
+  width: calc(90% - 128px)
+  margin: 0 auto
+  padding: 64px
+  @media only screen and (max-width: 600px)
+    width: calc(100% - 48px)
+    padding: 24px !important
+
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  justify-content: space-between
+  text-align: center
+
+.mobile-hide
+  @media only screen and (max-width: 600px)
+    display: none

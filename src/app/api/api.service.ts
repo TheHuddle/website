@@ -15,25 +15,33 @@ export class ApiService {
     private http: HttpClient,
   ) {}
 
-  private readonly baseUrl = 'http://localhost:8055'
+  private readonly baseUrl = 'https://api.codehuddle.org'
 
   get(url: string): Observable<any> {
     const options = { headers: this.authService.getHeaders() }
-    return this.http.get(`${this.baseUrl}/${url}`, options);
+    const x = this.http.get(`${this.baseUrl}/${url}`, options);
+    this.authService.refresh();
+    return x
   }
 
   delete(url: string): Observable<any> {
     const options = { headers: this.authService.getHeaders() }
-    return this.http.delete(`${this.baseUrl}/${url}`, options);
+    const x = this.http.delete(`${this.baseUrl}/${url}`, options);
+    this.authService.refresh();
+    return x
   }
 
   post(url: string, body: any): Observable<any> {
     const options = { headers: this.authService.getHeaders() }
-    return this.http.post(`${this.baseUrl}/${url}`, body, options);
+    const x = this.http.post(`${this.baseUrl}/${url}`, body, options);
+    this.authService.refresh();
+    return x
   }
 
   put(url: string, body: any): Observable<any> {
     const options = { headers: this.authService.getHeaders() }
-    return this.http.put(`${this.baseUrl}/${url}`, body, options);
+    const x = this.http.put(`${this.baseUrl}/${url}`, body, options);
+    this.authService.refresh();
+    return x
   }
 }

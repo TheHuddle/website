@@ -6,7 +6,7 @@ import { ApiService } from '../../api/api.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass', '../pages.module.sass']
+  styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
   discordHandle = '@'

@@ -29,6 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavModule } from './nav/nav.module';
+import { PagesModule } from './pages/pages.module';
 import { LoginComponent } from './login/login.component';
 
 
@@ -44,6 +45,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     ReactiveFormsModule,
     NavModule,
+    PagesModule,
     ...MaterialImports,
   ],
   providers: [],

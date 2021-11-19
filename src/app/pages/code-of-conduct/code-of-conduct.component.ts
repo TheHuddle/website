@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-code-of-conduct',
   templateUrl: './code-of-conduct.component.html',
-  styleUrls: ['./code-of-conduct.component.sass', '../pages.module.sass']
+  styleUrls: ['./code-of-conduct.component.sass']
 })
 export class CodeOfConductComponent implements OnInit {
 

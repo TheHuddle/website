@@ -1,5 +1,57 @@
-<div class='page-container' id='contact-us'>
-  <h1>Contact Us</h1>
-  <div>
+<div class='page-container'>
+  <div id='contact-us'>
+    <h1>Contact Us</h1>
+    <div class="community-card-container">
+      <mat-card *ngIf="communityCard && communityCard.first" class="community-contact-card">
+          <mat-card-header>
+            <img mat-card-avatar src="{{communityCard.avatar}}" class="avatar">
+            <mat-card-title>
+              {{communityCard.first}} {{communityCard.last}}
+            </mat-card-title>
+            <mat-card-subtitle *ngIf="communityCard.pronouns">{{communityCard.pronouns}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{communityCard.cover}}">
+          <mat-card-content class="content">
+            <div id="organization-title"></div>
+            <div width="100%" innerHTML="{{communityCard.bio}}"></div>
+          </mat-card-content>
+          <mat-card-actions class="content-row">
+            <a mat-button color="accent"
+              href="{{communityCard.discordlink}}"
+              >discord <mat-icon>discord</mat-icon></a>
+            <a mat-button color="accent"
+              href="mailto:{{communityCard.email}}"
+              >EMAIL <mat-icon>email</mat-icon></a>
+          </mat-card-actions>
+          <mat-card-footer><mat-progress-bar value="100" color="primary"></mat-progress-bar></mat-card-footer>
+        </mat-card>
+    </div>
+    <div class='community-card-container'>
+      <div *ngFor="let card of cards">
+        <mat-card *ngIf="card && card.first" class='community-contact-card'>
+          <mat-card-header>
+            <img mat-card-avatar src="{{card.avatar}}" class="avatar">
+            <mat-card-title>
+              {{card.first}} {{card.last}}
+            </mat-card-title>
+            <mat-card-subtitle *ngIf="card.pronouns">{{card.pronouns}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{card.cover}}">
+          <mat-card-content class="content">
+            <div id="organization-title">{{card.title}}</div>
+            <div class="content-row" innerHTML="{{card.bio}}"></div>
+          </mat-card-content>
+          <mat-card-actions class="content-row">
+            <a mat-button color="accent"
+              href="{{card.discordlink}}"
+              >{{card.discord}} <mat-icon>discord</mat-icon></a>
+            <a mat-button color="accent"
+              href="mailto:{{card.email}}"
+              >EMAIL <mat-icon>email</mat-icon></a>
+          </mat-card-actions>
+          <mat-card-footer><mat-progress-bar value="100" color="primary"></mat-progress-bar></mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>

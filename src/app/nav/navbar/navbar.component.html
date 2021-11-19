@@ -11,8 +11,8 @@
     </button>
     <span id='route-indicator'>
       <span class='bold'>The Huddle</span>
-      <span class='route-spacer'>&gt;</span>
-      {{tabTitle}}
+      <span class='mobile-hide route-spacer'>&gt;</span>
+      <span class='mobile-hide'>{{tabTitle}}</span>
     </span>
   </span>
   <span *ngIf="loggedIn">
@@ -42,6 +42,21 @@
     </button>
   </span>
   <span *ngIf="!loggedIn" style='width:100%; text-align: center'>
-    <span class='bold'>The Huddle</span>
+    <a mat-button href='/contact'
+      matTooltip="contact us"
+      matTooltipClass="tooltip"
+      matTooltipShowDelay="500"
+      matTooltipHidDelay="200"
+      width='64px'
+      ><mat-icon>email</mat-icon>
+    </a>
+    <span class='bold' style="margin:0 32px">The Huddle</span>
+    <a mat-button href='/login'
+      matTooltip="login / register"
+      matTooltipClass="tooltip"
+      matTooltipShowDelay="500"
+      matTooltipHidDelay="200"
+      width='64px'
+      ><mat-icon>person</mat-icon></a>
   </span>
 </mat-toolbar>

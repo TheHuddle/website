@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(this.authService.loggedIn()) {
+      this.router.navigate(['/home']);
+    }
     this.form.valueChanges.pipe(
         debounceTime(200),
         distinctUntilChanged(),

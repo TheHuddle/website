@@ -16,7 +16,7 @@ export class AuthService {
   ) {}
 
   login(email: string, password: string) {
-    return this.http.post('http://localhost:8055/auth/login', {
+    return this.http.post('https://api.codehuddle.org/auth/login', {
       email: email,
       password: password,
     }).pipe(
@@ -34,6 +34,14 @@ export class AuthService {
   loggedIn() {
     const x = localStorage.getItem('47be8bb8-ac4e-4d0c-9e3c-53dd4dcd0262')
     return x !== null && moment(x).isBefore(moment())
+  }
+
+  refresh() {
+    if (this.loggedIn()) {
+      this.http.post('https://api.codehuddle.org/auth/refresh', {
+        refresh_token: localStorage.getItem('41835236-a088-4455-bc90-cb781d8404f4'),
+      }).subscribe(x => this.setToken(x));
+    }
   }
 
   clearToken() {
@@ -59,9 +67,17 @@ export class AuthService {
   }
 
   getHeaders() {
-    return {
+    const token = localStorage.getItem('f89490db-098f-427b-b5eb-7a856f1774b1');
+    const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('f89490db-098f-427b-b5eb-7a856f1774b1')}`,
+      'Authorization': `Bearer ${token}`,
     }
+
+    if (!token) {
+      // @ts-ignore
+      delete headers['Authorization'];
+    }
+
+    return headers
   }
 }
