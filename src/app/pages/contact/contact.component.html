@@ -10,7 +10,7 @@
             </mat-card-title>
             <mat-card-subtitle *ngIf="communityCard.pronouns">{{communityCard.pronouns}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{communityCard.cover}}">
+          <img class="cover-photo" mat-card-image src="{{communityCard.cover}}">
           <mat-card-content class="content">
             <div id="organization-title"></div>
             <div width="100%" innerHTML="{{communityCard.bio}}"></div>
@@ -36,7 +36,7 @@
             </mat-card-title>
             <mat-card-subtitle *ngIf="card.pronouns">{{card.pronouns}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{card.cover}}">
+          <img class="cover-photo" mat-card-image src="{{card.cover}}">
           <mat-card-content class="content">
             <div id="organization-title">{{card.title}}</div>
             <div class="content-row" innerHTML="{{card.bio}}"></div>
