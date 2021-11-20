@@ -10,7 +10,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span id="route-indicator">
-      <span class="home-page-indicator" (click)="home()">The Huddle</span>
+      <span class="home-page-indicator" (click)="nav('/home')">The Huddle</span>
       <span class="mobile-hide route-spacer">&gt;</span>
       <span class="mobile-hide">{{tabTitle}}</span>
     </span>
@@ -35,22 +35,22 @@
     </button>
   </span>
   <span *ngIf="!loggedIn" id="logged-out-bar">
-    <a mat-icon-button href="/code-of-conduct"
+    <a mat-icon-button (click)="nav('/code-of-conduct')"
       matTooltip="official code of conduct"
       matTooltipClass="tooltip"
       matTooltipShowDelay="500"
       matTooltipHidDelay="200"
       ><mat-icon>assignment</mat-icon>
     </a>
-    <a mat-icon-button href="/contact"
+    <a mat-icon-button (click)="nav('/contact')"
       matTooltip="contact us"
       matTooltipClass="tooltip"
       matTooltipShowDelay="500"
       matTooltipHidDelay="200"
       ><mat-icon>email</mat-icon>
     </a>
-    <span class="home-page-indicator">The Huddle</span>
-    <a mat-icon-button href="/login"
+    <span class="home-page-indicator" (click)="nav('/home')">The Huddle</span>
+    <a mat-icon-button (click)="nav('/login')"
       matTooltip="login / register"
       matTooltipClass="tooltip"
       matTooltipShowDelay="500"

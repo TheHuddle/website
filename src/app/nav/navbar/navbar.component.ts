@@ -30,9 +30,9 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
-  home() {
+  nav(path) {
     this.closeMenu();
-    this.router.navigate(['/home']);
+    this.router.navigate([path]);
   }
   logout = () => this.authService.logout();
   loggedIn = false;
