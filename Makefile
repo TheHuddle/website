@@ -25,6 +25,9 @@ run: build
 		--publish=4200:$(APP_PORT) \
 		$(IMAGE_TAG)
 
+serve:
+	ng serve --host=0.0.0.0
+
 deploy:
 	$(MAKE) build
 	$(MAKE) ecr-push
