@@ -6,6 +6,8 @@ import { map } from 'rxjs';
 
 import * as moment from 'moment';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +18,7 @@ export class AuthService {
   ) {}
 
   login(email: string, password: string) {
-    return this.http.post('https://api.codehuddle.org/auth/login', {
+    return this.http.post(`${environment.apiBase}/auth/login`, {
       email: email,
       password: password,
     }).pipe(
@@ -38,7 +40,7 @@ export class AuthService {
 
   refresh() {
     if (this.loggedIn()) {
-      this.http.post('https://api.codehuddle.org/auth/refresh', {
+      this.http.post(`${environment.apiBase}/auth/refresh`, {
         refresh_token: localStorage.getItem('41835236-a088-4455-bc90-cb781d8404f4'),
       }).subscribe(x => this.setToken(x));
     }

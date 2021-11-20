@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiService } from '../../api/api.service';
+import { AssetsService } from '../../assets/assets.service';
 
 @Component({
   selector: 'app-contact',
@@ -13,6 +14,7 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private assets: AssetsService,
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +36,8 @@ export class ContactComponent implements OnInit {
         title       : datum.user.title,
         bio         : datum.bio,
         email       : datum.email,
-        avatar      : `https://api.codehuddle.org/assets/${datum.user.avatar}`,
-        cover       : `https://api.codehuddle.org/assets/${datum.image}`,
+        avatar      : this.assets.get(datum.user.avatar),
+        cover       : this.assets.get(datum.image),
       }
         console.log(card);
 

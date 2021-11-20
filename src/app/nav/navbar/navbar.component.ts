@@ -30,6 +30,10 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
+  home() {
+    this.closeMenu();
+    this.router.navigate(['/home']);
+  }
   logout = () => this.authService.logout();
   loggedIn = false;
 

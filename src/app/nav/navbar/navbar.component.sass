@@ -9,6 +9,7 @@ mat-toolbar
   justify-content: space-between
   user-select: none
 
+
   .route-spacer
     text-align: center
     font-size: 16px
@@ -16,3 +17,22 @@ mat-toolbar
 
 #logout-button
   margin-left: 16px
+
+#logged-out-bar
+  width: 100%
+  display: flex
+  text-align: center
+  align-items: center
+  justify-content: center
+
+  & > *
+    min-width: 64px
+    max-width: 64px
+
+  .home-page-indicator
+    max-width: 128px
+    min-width: 128px
+
+.home-page-indicator
+  cursor: pointer
+  font-weight: 600

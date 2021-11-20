@@ -1,44 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatToolbarModule } from '@angular/material/toolbar';
-
-import { ButtonsModule } from '../buttons/buttons.module';
-
-import { NavbarComponent } from './navbar/navbar.component';
-import { NavlinksComponent } from './navlinks/navlinks.component';
-
 
 const MaterialImports = [
-  MatToolbarModule,
   MatIconModule,
-  MatTabsModule,
   MatTooltipModule,
   MatButtonModule,
 ]
 
+import { DiscordComponent } from './discord/discord.component';
+
 const DeclarationsAndExports = [
-    NavbarComponent,
-    NavlinksComponent,
+    DiscordComponent,
 ]
+
 
 @NgModule({
   declarations: [
     ...DeclarationsAndExports,
   ],
   imports: [
-    ButtonsModule,
     CommonModule,
-    RouterModule,
     ...MaterialImports,
   ],
   exports: [
     ...DeclarationsAndExports,
   ],
 })
-export class NavModule { }
+export class ButtonsModule { }

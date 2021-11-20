@@ -3,5 +3,5 @@
      routerLink="{{link.route}}"
      (click)="closeMenu()"
      color="{{link.route === active ? 'accent' : ''}}"
-     > {{ link.title }} </a>
+     ><mat-icon *ngIf="link && link.icon" innerHTML="{{link.icon}}"></mat-icon> {{ link.title }}</a>
 </div>
