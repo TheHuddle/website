@@ -1,38 +1,39 @@
 <mat-toolbar color="primary">
-  <span id="route-indicator" *ngIf="loggedIn">
-    <button mat-icon-button class="menu"
-      matTooltip="main menu"
-      matTooltipClass="tooltip"
-      matTooltipShowDelay="500"
-      matTooltipHidDelay="200"
-      (click)="toggleMenu()"
-      >
-      <mat-icon>menu</mat-icon>
-    </button>
+  <span *ngIf="loggedIn" id="logged-in-bar">
     <span id="route-indicator">
-      <span class="home-page-indicator" (click)="nav('/home')">The Huddle</span>
-      <span class="mobile-hide route-spacer">&gt;</span>
-      <span class="mobile-hide">{{tabTitle}}</span>
+      <button mat-icon-button class="menu"
+        matTooltip="main menu"
+        matTooltipClass="tooltip"
+        matTooltipShowDelay="500"
+        matTooltipHidDelay="200"
+        (click)="toggleMenu()"
+        ><mat-icon>menu</mat-icon>
+      </button>
+      <span id="route-indicator">
+        <span class="home-page-indicator" (click)="nav('/home')">The Huddle</span>
+        <span class="mobile-hide route-spacer">&gt;</span>
+        <span class="mobile-hide">{{tabTitle}}</span>
+      </span>
     </span>
-  </span>
-  <span *ngIf="loggedIn">
-    <button mat-icon-button id="profile"
-      matTooltip="see / edit your profile"
-      matTooltipClass="tooltip"
-      matTooltipShowDelay="500"
-      matTooltipHidDelay="200"
-      >
-      <mat-icon>person</mat-icon>
-    </button>
-    <mat-discord-button></mat-discord-button>
-    <button mat-button id="logout-button"
-      (click)="logout()"
-      matTooltip="get outta here!"
-      matTooltipClass="tooltip"
-      matTooltipShowDelay="500"
-      matTooltipHidDelay="200"
-      ><mat-icon>logout</mat-icon>
-    </button>
+    <span *ngIf="loggedIn">
+      <button mat-icon-button id="profile"
+        matTooltip="see / edit your profile"
+        matTooltipClass="tooltip"
+        matTooltipShowDelay="500"
+        matTooltipHidDelay="200"
+        >
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-discord-button></mat-discord-button>
+      <button mat-button id="logout-button"
+        (click)="logout()"
+        matTooltip="get outta here!"
+        matTooltipClass="tooltip"
+        matTooltipShowDelay="500"
+        matTooltipHidDelay="200"
+        ><mat-icon>logout</mat-icon>
+      </button>
+    </span>
   </span>
   <span *ngIf="!loggedIn" id="logged-out-bar">
     <a mat-icon-button (click)="nav('/code-of-conduct')"

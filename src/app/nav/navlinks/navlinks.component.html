@@ -1,7 +1,10 @@
 <div id='navlinks-container'>
-  <a mat-button *ngFor="let link of links"
-     routerLink="{{link.route}}"
-     (click)="closeMenu()"
-     color="{{link.route === active ? 'accent' : ''}}"
-     ><mat-icon *ngIf="link && link.icon && link.title" innerHTML="{{link.icon}}"></mat-icon> {{ link.title }}</a>
+  <span *ngFor="let link of links">
+    <a mat-button
+       *ngIf="link && link.icon && link.title"
+       routerLink="{{link.route}}"
+       (click)="closeMenu()"
+       color="{{link.route === active ? 'accent' : ''}}"
+       ><mat-icon innerHTML="{{link.icon}}"></mat-icon> {{ link.title }}</a>
+  </span>
 </div>
