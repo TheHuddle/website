@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AuthGuard } from './auth/auth.guard';
-import { LoginComponent } from './login/login.component';
+import { AuthGuard } from '@services/auth.guard';
 import { Pages } from './pages/pages';
 
 const pages = Pages.map(page => {
@@ -15,7 +14,6 @@ const pages = Pages.map(page => {
 
 const routes: Routes = [
   ...pages,
-  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

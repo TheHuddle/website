@@ -1,0 +1,24 @@
+<mat-card class="contact-card">
+  <mat-card-header>
+    <img mat-card-avatar src="{{avatar}}" class="avatar">
+    <mat-card-title>
+      {{first}} {{last}}
+    </mat-card-title>
+    <mat-card-subtitle>{{pronouns}}</mat-card-subtitle>
+  </mat-card-header>
+  <img class="cover-photo" mat-card-image src="{{cover}}">
+  <mat-card-content class="content">
+    <div id="organization-title"></div>
+    <div id="bio" innerHTML="{{bio}}"></div>
+  </mat-card-content>
+  <mat-card-actions class="action-row">
+    <mat-discord-button
+        [link]="discordLink"
+        [text]="discordText"
+        ></mat-discord-button>
+    <a mat-button color="accent"
+                  href="mailto:{{email}}"
+                  >EMAIL <mat-icon>email</mat-icon></a>
+  </mat-card-actions>
+  <mat-card-footer><mat-progress-bar value="100" color="primary"></mat-progress-bar></mat-card-footer>
+</mat-card>

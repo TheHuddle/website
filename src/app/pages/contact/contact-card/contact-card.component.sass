@@ -1,21 +1,4 @@
-#contact-us
-  width: 100%
-  display: flex
-  flex-direction: column
-  user-select: none
-
-.avatar
-  cursor: pointer
-
-.community-card-container
-  width: 100%
-  margin-bottom: 32px
-  display: flex
-  flex-wrap: wrap
-  flex-direction: row
-  justify-content: center
-
-.community-contact-card
+.contact-card
   text-align: left
   max-width: 400px
   min-width: 400px
@@ -25,13 +8,7 @@
     min-width: 300px
     margin: 8px
 
-.content
-  width: 100%
-  display: flex
-  flex-direction: column
-  justify-content: center
-
-.content-row
+.action-row
   width: 100%
   margin: 16px 0
   padding: 0
@@ -39,16 +16,20 @@
   flex-direction: row
   justify-content: space-between
 
+  & > *
+    text-transform: uppercase
+    margin: 0 auto !important
+    width: 48%
+
 .cover-photo
   min-height: 300px
   max-height: 300px
   object-fit: cover
-
 
 #organization-title
   width: 100%
   font-weight: 600
   text-align: center
 
-.pronouns
-  font-size: 16px
+#bio
+  width: 100%

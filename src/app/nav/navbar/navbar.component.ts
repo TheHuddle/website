@@ -3,8 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { filter } from 'rxjs';
 
-import { Pages } from '../../pages/pages';
-import { AuthService } from '../../auth/auth.service';
+import { Pages } from '@pages/pages';
+import { AuthService } from '@services/auth.service';
 
 
 @Component({
@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
   @Output() toggleMenuEvent = new EventEmitter<any>();
   @Output() closeMenuEvent  = new EventEmitter<any>();
   @Output() openMenuEvent   = new EventEmitter<any>();
-
 
   toggleMenu = () => this.toggleMenuEvent.emit();
   closeMenu  = () => this.closeMenuEvent.emit();

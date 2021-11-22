@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { debounceTime, distinctUntilChanged, from, delay } from 'rxjs';
 
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-login',

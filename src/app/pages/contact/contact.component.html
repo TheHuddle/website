@@ -2,57 +2,31 @@
   <div id='contact-us'>
     <h1>Contact Us</h1>
     <div class="community-card-container">
-      <mat-card *ngIf="communityCard && communityCard.first" class="community-contact-card">
-          <mat-card-header>
-            <img mat-card-avatar src="{{communityCard.avatar}}" class="avatar">
-            <mat-card-title>
-              {{communityCard.first}} {{communityCard.last}}
-            </mat-card-title>
-            <mat-card-subtitle *ngIf="communityCard.pronouns">{{communityCard.pronouns}}</mat-card-subtitle>
-          </mat-card-header>
-          <img class="cover-photo" mat-card-image src="{{communityCard.cover}}">
-          <mat-card-content class="content">
-            <div id="organization-title"></div>
-            <div width="100%" innerHTML="{{communityCard.bio}}"></div>
-          </mat-card-content>
-          <mat-card-actions class="content-row">
-            <a mat-button color="accent"
-              href="{{communityCard.discordlink}}"
-              target="_blank"
-              >discord <mat-icon>discord</mat-icon></a>
-            <a mat-button color="accent"
-              href="mailto:{{communityCard.email}}"
-              >EMAIL <mat-icon>email</mat-icon></a>
-          </mat-card-actions>
-          <mat-card-footer><mat-progress-bar value="100" color="primary"></mat-progress-bar></mat-card-footer>
-        </mat-card>
+      <contact-card *ngIf="communityCard && communityCard.first"
+          [avatar]="communityCard.avatar"
+          [cover]="communityCard.cover"
+          [first]="communityCard.first"
+          [last]="communityCard.last"
+          [pronouns]="communityCard.pronouns"
+          [bio]="communityCard.bio"
+          [discordLink]="communityCard.discordLink"
+          [discordText]="'discord'"
+          [email]="communityCard.email"
+          ></contact-card>
     </div>
     <div class='community-card-container'>
       <div *ngFor="let card of cards">
-        <mat-card *ngIf="card && card.first" class='community-contact-card'>
-          <mat-card-header>
-            <img mat-card-avatar src="{{card.avatar}}" class="avatar">
-            <mat-card-title>
-              {{card.first}} {{card.last}}
-            </mat-card-title>
-            <mat-card-subtitle *ngIf="card.pronouns">{{card.pronouns}}</mat-card-subtitle>
-          </mat-card-header>
-          <img class="cover-photo" mat-card-image src="{{card.cover}}">
-          <mat-card-content class="content">
-            <div id="organization-title">{{card.title}}</div>
-            <div class="content-row" innerHTML="{{card.bio}}"></div>
-          </mat-card-content>
-          <mat-card-actions class="content-row">
-            <a mat-button color="accent"
-              href="{{card.discordlink}}"
-              target="_blank"
-              >{{card.discord}} <mat-icon>discord</mat-icon></a>
-            <a mat-button color="accent"
-              href="mailto:{{card.email}}"
-              >EMAIL <mat-icon>email</mat-icon></a>
-          </mat-card-actions>
-          <mat-card-footer><mat-progress-bar value="100" color="primary"></mat-progress-bar></mat-card-footer>
-        </mat-card>
+        <contact-card *ngIf="card && card.first"
+            [avatar]="card.avatar"
+            [cover]="card.cover"
+            [first]="card.first"
+            [last]="card.last"
+            [pronouns]="card.pronouns"
+            [bio]="card.bio"
+            [discordLink]="card.discordLink"
+            [discordText]="card.discord"
+            [email]="card.email"
+            ></contact-card>
       </div>
     </div>
   </div>

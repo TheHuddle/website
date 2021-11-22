@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { filter } from 'rxjs';
 
-import { Pages } from '../../pages/pages'
+import { Pages } from '@pages/pages'
 
 
 @Component({

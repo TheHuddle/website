@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { ButtonsModule } from '../buttons/buttons.module';
+import { ButtonsModule } from '@components/buttons/buttons.module';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavlinksComponent } from './navlinks/navlinks.component';

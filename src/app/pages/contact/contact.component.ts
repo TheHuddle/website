@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApiService } from '../../api/api.service';
-import { AssetsService } from '../../assets/assets.service';
+import { ApiService } from '@services/api.service';
+import { AssetsService } from '@services/assets.service';
 
 @Component({
   selector: 'app-contact',

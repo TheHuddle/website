@@ -2,34 +2,40 @@ import { HomeComponent } from './home/home.component';
 import { CodeOfConductComponent } from './code-of-conduct/code-of-conduct.component';
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
+
+// note: ordering of pages MATTERS here (they are listed in the menu in this same order)
 export const Pages = [
     {
       route: '/home',
-      title: 'Home',
       public: false,
-      icon: 'home',
+      title: 'Home', icon: 'home',
       component: HomeComponent,
     },
     {
       route: '/code-of-conduct',
-      title: 'Code of Conduct',
       public: true,
-      icon: 'assignment',
+      title: 'Code of Conduct', icon: 'assignment',
       component: CodeOfConductComponent,
     },
     {
       route: '/events',
-      title: 'Events',
       public: false,
-      icon: 'events',
+      title: 'Events', icon: 'events',
       component: EventsComponent,
     },
     {
       route: '/contact',
-      title: 'Contact',
       public: true,
-      icon: 'email',
+      title: 'Contact', icon: 'email',
       component: ContactComponent,
+    },
+    {
+      route: '/login',
+      public: true,
+      title: null, icon: null,
+      component: LoginComponent,
     },
 ]
