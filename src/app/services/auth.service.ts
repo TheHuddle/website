@@ -21,11 +21,7 @@ export class AuthService {
     return this.http.post(`${environment.apiBase}/auth/login`, {
       email: email,
       password: password,
-    }).pipe(
-      map((result) => {
-        console.log(result);
-        this.setToken(result);
-      }))
+    }).pipe(map((result) => this.setToken(result)));
   }
 
   logout() {
@@ -42,7 +38,10 @@ export class AuthService {
     if (this.loggedIn()) {
       this.http.post(`${environment.apiBase}/auth/refresh`, {
         refresh_token: localStorage.getItem('41835236-a088-4455-bc90-cb781d8404f4'),
-      }).subscribe(x => this.setToken(x));
+      }).subscribe(
+        x => this.setToken(x),
+        x => this.logout(),
+      );
     }
   }
 

@@ -1,24 +1,28 @@
-<mat-card class="contact-card">
+<mat-card class="contact-card" *ngIf="card && card.first">
   <mat-card-header>
-    <img mat-card-avatar src="{{avatar}}" class="avatar">
+    <img *ngIf="!card?.userId" mat-card-avatar src="{{card?.avatar}}" class="avatar">
+    <img *ngIf="card?.userId" mat-card-avatar [routerLink]="['/people', card.userId]" src="{{card?.avatar}}" class="avatar-link">
     <mat-card-title>
-      {{first}} {{last}}
+      {{card?.first}} {{card?.last}}
     </mat-card-title>
-    <mat-card-subtitle>{{pronouns}}</mat-card-subtitle>
+    <mat-card-subtitle>{{card?.pronouns}}</mat-card-subtitle>
   </mat-card-header>
-  <img class="cover-photo" mat-card-image src="{{cover}}">
+  <img class="cover-photo" mat-card-image src="{{card?.cover}}">
   <mat-card-content class="content">
-    <div id="organization-title"></div>
-    <div id="bio" innerHTML="{{bio}}"></div>
+    <div id="organization-title" *ngIf="card?.title">{{card?.title}}</div>
+    <div id="bio" innerHTML="{{card?.bio}}"></div>
   </mat-card-content>
   <mat-card-actions class="action-row">
     <mat-discord-button
-        [link]="discordLink"
-        [text]="discordText"
+        [link]="card?.discordLink"
+        [text]="card?.discord"
         ></mat-discord-button>
     <a mat-button color="accent"
-                  href="mailto:{{email}}"
+                  href="mailto:{{card?.email}}"
                   >EMAIL <mat-icon>email</mat-icon></a>
   </mat-card-actions>
   <mat-card-footer><mat-progress-bar value="100" color="primary"></mat-progress-bar></mat-card-footer>
+</mat-card>
+<mat-card class="contact-card spinner" *ngIf="!card || !card.first">
+  <mat-spinner></mat-spinner>
 </mat-card>

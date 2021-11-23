@@ -1,31 +1,15 @@
 <div class='page-container'>
   <div id='contact-us'>
     <h1>Contact Us</h1>
-    <div class="community-card-container">
-      <contact-card *ngIf="communityCard && communityCard.first"
-          [avatar]="communityCard.avatar"
-          [cover]="communityCard.cover"
-          [first]="communityCard.first"
-          [last]="communityCard.last"
-          [pronouns]="communityCard.pronouns"
-          [bio]="communityCard.bio"
-          [discordLink]="communityCard.discordLink"
-          [discordText]="'discord'"
-          [email]="communityCard.email"
+    <div class="card-container">
+      <contact-card
+          [card]="communityCard"
           ></contact-card>
     </div>
-    <div class='community-card-container'>
+    <div class='card-container'>
       <div *ngFor="let card of cards">
-        <contact-card *ngIf="card && card.first"
-            [avatar]="card.avatar"
-            [cover]="card.cover"
-            [first]="card.first"
-            [last]="card.last"
-            [pronouns]="card.pronouns"
-            [bio]="card.bio"
-            [discordLink]="card.discordLink"
-            [discordText]="card.discord"
-            [email]="card.email"
+        <contact-card
+            [card]="card"
             ></contact-card>
       </div>
     </div>

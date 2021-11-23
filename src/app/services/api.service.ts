@@ -43,4 +43,11 @@ export class ApiService {
     this.authService.refresh();
     return x
   }
+  
+  patch(url: string, body: any): Observable<any> {
+    const options = { headers: this.authService.getHeaders() }
+    const x = this.http.patch(`${environment.apiBase}/${url}`, body, options);
+    this.authService.refresh();
+    return x
+  }
 }

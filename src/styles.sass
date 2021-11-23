@@ -2,9 +2,50 @@
    Manually Retrieved Theme / Global Variables
    */
 
-$primary: #7B1FA2
-$accent: #69F0AE
+@use '@angular/material' as mat
+@include mat.core()
+
+@import "@angular/material/theming"
+
+$default-primary: mat-palette($mat-deep-purple, 700)
+$default-accent:  mat-palette($mat-teal, 400)
+$default-warn:    mat-palette($mat-red, 600)
+$default-theme: mat-dark-theme($default-primary, $default-accent, $default-warn)
+@include angular-material-theme($default-theme)
+
+$light-primary: mat-palette($mat-deep-purple, 300)
+$light-accent:  mat-palette($mat-teal, 300)
+$light-warn:    mat-palette($mat-red, 600)
+$light-theme: mat-dark-theme($light-primary, $light-accent, $light-warn)
+@include angular-material-theme($default-theme)
+
+$dark-primary: mat-palette($mat-deep-purple, 900)
+$dark-accent:  mat-palette($mat-teal, 600)
+$dark-warn:    mat-palette($mat-red, 800)
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn)
+@include angular-material-theme($default-theme)
+
+@include mat.core-theme($dark-theme)
+
+@include mat.form-field-theme($light-theme)
+@include mat.input-theme($light-theme)
+@include mat.progress-spinner-theme($light-theme)
+
+$primary:       mat.get-color-from-palette($default-primary, default)
+$primary-light: mat.get-color-from-palette($light-primary, default)
+$primary-dark:  mat.get-color-from-palette($dark-primary, default)
+
+$accent:       mat.get-color-from-palette($default-accent, default)
+$accent-light: mat.get-color-from-palette($light-accent, default)
+$accent-dark:  mat.get-color-from-palette($dark-accent, default)
+
+$warn:       mat.get-color-from-palette($default-warn, default)
+$warn-light: mat.get-color-from-palette($light-warn, default)
+$warn-dark:  mat.get-color-from-palette($dark-warn, default)
+
 $warn: #F44336
+$warn-light: #F44336
+$warn-dark: #F44336
 
 $background: #303030
 
@@ -73,19 +114,19 @@ body, html
 .hyperlink
   cursor: pointer
   text-decoration: none
-  color: $accent
+  color: $primary-light
 
   &:focus
-    color: $accent
+    color: $primary-light
 
   &:visited
-    color: $accent
+    color: $primary-light
 
   &:hover
-    color: $accent
+    color: $primary-light
 
 .tooltip
-  background: $accent
+  background: $accent-light
   color: $gray-2 !important
   font-size: 16px
 

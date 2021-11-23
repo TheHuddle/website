@@ -26,8 +26,8 @@ export class ContactComponent implements OnInit {
 
   private updateContactCards(data) {
     this.cards = data.map((datum) => {
-      console.log(datum)
       const card = {
+        userId      : datum.user.id,
         first       : datum.user.first_name,
         last        : datum.user.last_name,
         pronouns    : datum.user.pronouns,
@@ -39,13 +39,14 @@ export class ContactComponent implements OnInit {
         avatar      : this.assets.get(datum.user.avatar),
         cover       : this.assets.get(datum.image),
       }
-        console.log(card);
 
       if (card.title === 'Community Email') {
-        this.communityCard = {...card}
+        this.communityCard = {...card};
+        delete this.communityCard.title;
+        this.communityCard.discord = 'discord';
       } else {
-        return card
+        return card;
       }
-    });
+    }).filter(nonNull => nonNull);
   }
 }

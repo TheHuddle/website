@@ -3,6 +3,7 @@ import { CodeOfConductComponent } from './code-of-conduct/code-of-conduct.compon
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
+import { PeopleComponent } from './people/people.component';
 import { ProfileComponent } from './profile/profile.component';
 
 
@@ -33,9 +34,21 @@ export const Pages = [
       component: ContactComponent,
     },
     {
+      route: '/profile',
+      public: false,
+      title: 'My Profile', icon: null,
+      component: ProfileComponent,
+    },
+    {
       route: '/login',
       public: true,
       title: null, icon: null,
       component: LoginComponent,
+    },
+    {
+      route: '/people/:id',
+      public: true,
+      title: 'Community', icon: null,
+      component: PeopleComponent,
     },
 ]

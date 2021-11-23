@@ -1,0 +1,51 @@
+<div class="page-container">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <span *ngIf="!loading && success">
+    <div id="profile">
+      <mat-card id="user-details">
+        <span class="row">
+          <img mat-card-avatar src="{{avatar}}" class="avatar">
+        </span>
+        <mat-card-content>
+          <form [formGroup]="form">
+            <span class="row">
+              <mat-form-field id="form-first-name">
+                <mat-label>first name</mat-label>
+                <input type="text" matInput formControlName="first_name">
+              </mat-form-field>
+              <mat-form-field *ngIf="form.controls['last_name'].value" id="form-last-name">
+                <mat-label>last name</mat-label>
+                <input type="text" matInput formControlName="last_name">
+              </mat-form-field>
+            </span>
+            <span class="row">
+              <mat-form-field id="form-discord-handle">
+                <mat-label>discord handle</mat-label>
+                <input type="text" matInput formControlName="discord_handle">
+              </mat-form-field>
+              <mat-form-field *ngIf="form.controls['pronouns'].value" id="form-pronouns">
+                <mat-label>pronouns</mat-label>
+                <input type="text" matInput formControlName="pronouns">
+              </mat-form-field>
+            </span>
+            <span class="row" *ngIf="form.controls['website'].value">
+              <mat-form-field id="form-website">
+                <mat-label>website</mat-label>
+                <input type="text" matInput formControlName="website">
+              </mat-form-field>
+            </span>
+            <span class="row" id="bio-row" *ngIf="form.controls['bio'].value">
+              <h4>{{ form.enabled ? "bio preview" : "bio"}}</h4>
+              <div [innerHTML]="form.controls['bio'].value"></div>
+              <hr>
+            </span>
+          </form>
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-progress-bar value="100" color="primary"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+  </div>
+  </span>
+</div>

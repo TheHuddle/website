@@ -10,13 +10,14 @@
         ><mat-icon>menu</mat-icon>
       </button>
       <span id="route-indicator">
-        <span class="home-page-indicator" (click)="nav('/home')">The Huddle</span>
+        <span class="home-page-indicator" [routerLink]="['/home']">The Huddle</span>
         <span class="mobile-hide route-spacer">&gt;</span>
         <span class="mobile-hide">{{tabTitle}}</span>
       </span>
     </span>
     <span *ngIf="loggedIn">
       <button mat-icon-button id="profile"
+        [routerLink]="['/profile']"
         matTooltip="see / edit your profile"
         matTooltipClass="tooltip"
         matTooltipShowDelay="500"
@@ -36,14 +37,14 @@
     </span>
   </span>
   <span *ngIf="!loggedIn" id="logged-out-bar">
-    <a mat-icon-button (click)="nav('/code-of-conduct')"
+    <a mat-icon-button [routerLink]="['/code-of-conduct']"
       matTooltip="official code of conduct"
       matTooltipClass="tooltip"
       matTooltipShowDelay="500"
       matTooltipHidDelay="200"
       ><mat-icon>assignment</mat-icon>
     </a>
-    <a mat-icon-button (click)="nav('/contact')"
+    <a mat-icon-button [routerLink]="['/contact']"
       matTooltip="contact us"
       matTooltipClass="tooltip"
       matTooltipShowDelay="500"
@@ -51,9 +52,9 @@
       ><mat-icon>email</mat-icon>
     </a>
     <span class="mobile-hide"></span>
-    <span class="home-page-indicator" (click)="nav('/home')">The Huddle</span>
+    <span class="home-page-indicator" [routerLink]="['/home']">The Huddle</span>
     <span class="mobile-hide"></span>
-    <a mat-icon-button (click)="nav('/login')"
+    <a mat-icon-button [routerLink]="['/login']"
       matTooltip="login / register"
       matTooltipClass="tooltip"
       matTooltipShowDelay="500"
