@@ -1,9 +1,9 @@
 <div class="page-container">
   <div id="profile">
-    <mat-card id="user-details-spinner" *ngIf="!loaded"><mat-spinner></mat-spinner></mat-card>
-    <mat-card id="user-details" *ngIf="loaded">
-      <span class="row">
-        <img mat-card-avatar src="{{avatar}}" class="avatar">
+    <mat-card id="user-details">
+      <span class="row center">
+        <img mat-card-avatar src="{{avatar}}" *ngIf="loaded" class="avatar">
+        <span *ngIf="!loaded" id="spinner-container"><mat-spinner [diameter]="100"></mat-spinner></span>
       </span>
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="submit()">
