@@ -13,8 +13,8 @@ const MaterialImports = [
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
-import { NavModule }   from '@nav/nav.module'
-import { PagesModule } from '@pages/pages.module'
+import { NavModule }   from '@nav/module'
+import { PagesModule } from '@pages/module';
 
 
 @NgModule({

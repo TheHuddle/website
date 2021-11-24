@@ -50,4 +50,21 @@ export class ApiService {
     this.authService.refresh();
     return x
   }
+
+  upload(file: any): Observable<any> {
+    const headers = this.authService.getHeaders();
+
+    // @ts-ignore
+    delete headers['Content-Type']
+
+    const options = { headers: headers }
+
+    console.log(options)
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const x = this.http.post(`${environment.apiBase}/files`, formData, options)
+    this.authService.refresh();
+    return x;
+  }
 }

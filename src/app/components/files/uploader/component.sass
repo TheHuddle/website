@@ -1,0 +1,80 @@
+.mobile-hide
+  @media only screen and (max-width: 600px)
+    display: none
+  height: 500px
+
+  mat-drawer
+    width: 150px
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+
+    button
+      width: 150px
+      height: 50%
+
+  mat-drawer-content
+    height: 500px
+    flex-direction: column
+    justify-content: center
+    display: flex
+    flex-wrap: wrap
+    overflow-y: auto
+
+    div
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      height: 100%
+      width: calc(100% - 150px)
+      margin-left: 150px
+
+    img
+      max-width: 100%
+      max-height: calc(100% - 11px)
+      object-fit: cover
+
+    button
+      width: 100%
+      height: calc(100% - 5px)
+
+    mat-progress-bar
+      height: 5px
+
+.mobile-show
+  @media only screen and (min-width: 601px)
+    display: none
+
+  #actions
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-bottom: 8px
+
+    button
+      width: 50%
+
+  #preview
+    width: 100%
+    height: 500px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    overflow-y: auto
+
+    *
+      width: 100%
+
+    button
+      height: 100%
+
+    img
+      margin: 0
+      padding: 0
+      max-width: 100%
+      max-height: calc(100% - 11px)
+      object-fit: cover

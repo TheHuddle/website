@@ -1,0 +1,27 @@
+<div class="mobile-hide">
+  <mat-drawer-container>
+    <mat-drawer mode="side" opened>
+      <button mat-raised-button id="select" [disabled]='!selected' color="primary" (click)="emit()">Select Image</button>
+      <button mat-raised-button id="delete" [disabled]='!selected' color="warn" (click)="delete()">Delete Image</button>
+    </mat-drawer>
+    <mat-drawer-content id="uploads-container">
+      <div *ngFor="let image of images" class="card">
+        <img src="{{image.src}}" (click)="select(image.id)">
+        <mat-progress-bar value="{{ image.id === selected ? 100 : 0 }}" color=accent></mat-progress-bar>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
+
+<div class="mobile-show">
+  <div id="actions">
+    <button mat-raised-button [disabled]='!selected' color="primary" (click)="emit()">Select Image</button>
+    <button mat-raised-button [disabled]='!selected' color="warn" (click)="delete()">Delete Image</button>
+  </div>
+  <div id="preview">
+    <div *ngFor="let image of images" class="card">
+      <img src="{{image.src}}" (click)="select(image.id)">
+      <mat-progress-bar value="{{ image.id === selected ? 100 : 0 }}" color=accent></mat-progress-bar>
+    </div>
+  </div>
+</div>

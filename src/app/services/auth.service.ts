@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 
 import * as moment from 'moment';
 
-import { environment } from '../../environments/environment';
+import { environment } from '@environment';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,9 @@ export class AuthService {
         refresh_token: localStorage.getItem('41835236-a088-4455-bc90-cb781d8404f4'),
       }).subscribe(
         x => this.setToken(x),
-        x => this.logout(),
+        x => {
+          if (environment.production) this.logout()
+        }
       );
     }
   }

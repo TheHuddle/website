@@ -1,0 +1,68 @@
+.mobile-hide
+  #uploads-container
+    display: flex
+    flex-wrap: wrap
+    height: 500px
+    overflow-x: hidden
+    overflow-y: auto
+
+  mat-drawer
+    width: 150px
+    display: flex
+    flex-direction: column
+
+  mat-drawer-content
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+  .card
+    padding: 0
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+    user-select: none
+    cursor: pointer
+    height: 300px
+    width: 300px
+    margin: 16px
+    background: red
+  
+  button
+    width: 149px
+
+  #select
+    height: 400px
+  #delete
+    height: 100px
+
+.mobile-show
+  @media only screen and (min-width: 601px)
+    display: none
+  width: 100%
+  display: flex
+  flex-direction: column
+  
+  div
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+  #actions > button
+    margin-bottom: 16px
+
+  #preview > div
+    margin-bottom: 16px
+    width: 300px
+
+img
+  width: 100%
+  max-width: 300px
+  height: 100%
+  max-height: 300px
+  margin: 0
+  padding: 0
+  object-fit: cover
