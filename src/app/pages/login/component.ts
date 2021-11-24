@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { debounceTime, distinctUntilChanged, from, delay } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
+import { environment } from '@environment';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import { AuthService } from '@services/auth.service';
 export class LoginComponent implements OnInit {
   loggingIn = false
   failedLogin = false
+  registrationLink = environment.registration
 
   validBar = 0
   validEmail = 0

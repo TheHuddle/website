@@ -41,7 +41,7 @@ export class AuthService {
       }).subscribe(
         x => this.setToken(x),
         x => {
-          if (environment.production) this.logout()
+          if (environment.production) this.logout();
         }
       );
     }

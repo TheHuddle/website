@@ -8,7 +8,9 @@
         <mat-form-field>
           <input type="password" matInput placeholder="password" formControlName="password">
         </mat-form-field>
-        <a class="hyperlink" id="password-reset">forgot password?</a>
+        <!-- @TODO : Implement password reset page
+        <a class="hyperlink" id="password-reset" [disabled]="true">forgot password?</a>
+        -->
         <button type="submit" mat-button>Login</button>
       </form>
     </mat-card-content>
@@ -20,6 +22,9 @@
   </mat-card>
 
   <span>
-    Is it your first time? Fill out our <a class="hyperlink">registration form</a>.
+    Is it your first time? Fill out our <a class="hyperlink" target="_blank" href="{{registrationLink}}">registration form</a>.
   </span>
+
+  <!-- @TODO : Implement password reset page -->
+  <span><br><br>If you've forgotten your password, please contact an @admin</span>
 </div>
