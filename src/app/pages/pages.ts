@@ -1,5 +1,6 @@
 import { HomeComponent } from './home/component';
 import { CodeOfConductComponent } from './code-of-conduct/component';
+import { AboutComponent } from './about/component';
 import { EventsComponent } from './events/component';
 import { ContactComponent } from './contact/component';
 import { LoginComponent } from './login/component';
@@ -15,6 +16,12 @@ export const Pages = [
       public: false,
       title: 'Home', icon: 'home',
       component: HomeComponent,
+    },
+    {
+      route: '/about',
+      public: true,
+      title: 'About', icon: 'description',
+      component: AboutComponent,
     },
     {
       route: '/code-of-conduct',

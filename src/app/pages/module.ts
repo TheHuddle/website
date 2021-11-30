@@ -26,6 +26,7 @@ const MaterialImports = [
 import { ButtonsModule } from '@components/buttons/module'
 import { FilesModule } from '@components/files/module'
 
+import { AboutComponent } from './about/component'
 import { CodeOfConductComponent } from './code-of-conduct/component'
 import { ContactCardComponent } from './contact/card/component'
 import { ContactComponent } from './contact/component'
@@ -37,6 +38,7 @@ import { PeopleComponent } from './people/component'
 import { ProfileComponent } from './profile/component'
 
 const DeclarationsAndExports = [
+  AboutComponent,
   CodeOfConductComponent,
   ContactComponent,
   EventsComponent,
