@@ -1,0 +1,8 @@
+FROM node:14.15.5
+WORKDIR /
+RUN npm install -g @angular/cli
+COPY package.json package-lock.json ./
+RUN npm install --dev
+
+WORKDIR /app
+EXPOSE 4200

@@ -1,0 +1,9 @@
+.angular
+.git
+.gitignore
+README.md
+bin
+dist
+docker
+node_modules
+tmp

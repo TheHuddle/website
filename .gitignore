@@ -2,7 +2,6 @@
 /dist
 /tmp
 /out-tsc
-# Only exists if Bazel was run
 /bazel-out
 
 # dependencies
@@ -20,7 +19,8 @@ chrome-profiler-events*.json
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
+*.swp
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -39,9 +39,5 @@ yarn-error.log
 testem.log
 /typings
 
-# System Files
 .DS_Store
 Thumbs.db
-
-# editor
-*.swp
