@@ -83,19 +83,20 @@ publish:
 ecr-push: aws-docker-login
 	docker push $(IMAGE_TAG)
 
-aws-docker-login:
+aws-docker-login: %aws-docker-login
+%aws-docker-login:
 	aws --profile=$(HUDDLE_AWS_PROFILE) \
 		ecr get-login-password --region us-east-2 \
 		| docker login --username AWS --password-stdin $(ECR_REPO)
 
 ifndef HUDDLE_AWS_PROFILE
-aws-docker-login:
+%aws-docker-login:
 	echo 'missing HUDDLE_AWS_PROFILE'
 	false
 endif
 
 ifndef HUDDLE_PUBLISH_ID
-aws-docker-login:
+%aws-docker-login:
 	echo 'must provide credential file HUDDLE_PUBLISH_ID'
 	false
 endif
