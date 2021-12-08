@@ -1,0 +1,45 @@
+<mat-card class="event-card">
+  <mat-card-header id="header">
+    <mat-card-title id="title">
+      <h2 *ngIf="event && event.title">{{ historical ? event.label : 'Active Event' }}: <span class="italic">{{ event.title }}</span></h2>
+      <h2 *ngIf="!event || !event.title">No active events :c</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content id="content" id="row">
+    <div id="description-short">
+      <span *ngIf="event && event.description_short">{{ event.description_short }}</span>
+      <span *ngIf="!event || !event.description_short">Stay tuned to the discord for coming events!</span>
+    </div>
+    <div id="dates" class="row" *ngIf="event && event.start && event.deadline">
+      <div id="start" class="row">
+        <h3 class="date-title">Start Date</h3>
+        <span innerHTML={{event.start}}></span>
+      </div>
+      <div id="stop" class="row">
+        <h3 class="date-title">{{ historical ? 'End Date' : 'Deadline'}}</h3>
+        <span innerHTML={{event.deadline}}></span>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions id="action" class="row">
+    <button mat-raised-button
+      *ngIf="event && event.title && !historical"
+      [routerLink]="['/events', event.id]"
+      color="primary"
+      >Get started</button>
+    <button mat-raised-button
+      *ngIf="event && event.title && historical"
+      [routerLink]="['/events', event.id]"
+      color="warn"
+      >Results</button>
+    <mat-discord-button
+        *ngIf="!event || !event.title"
+        text="discord"
+        ></mat-discord-button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar *ngIf="event && event.title && !historical" value="100" color="primary"></mat-progress-bar>
+    <mat-progress-bar *ngIf="!event || !event.title" value="0" color="accent"></mat-progress-bar>
+    <mat-progress-bar *ngIf="event && event.title && historical" value="100" color="warn"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

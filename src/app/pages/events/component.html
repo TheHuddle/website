@@ -1,8 +1,16 @@
 <div class="page-container" style="user-select:none">
-  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width:100%">
-    Events Calendar coming soon! For now, stay tuned to our discord!
-    <div style="width: 200px; margin: 16px">
-      <mat-discord-button text="discord"></mat-discord-button>
-    </div>
+  <mat-spinner style="margin: 0 auto" *ngIf="currentEvents.length < 1"></mat-spinner>
+  <h2 *ngIf="currentEvents.length > 0">Active Events</h2>
+  <div *ngFor="let event of currentEvents" class="card-container">
+    <huddle-event-card
+      [event]="event"
+      ></huddle-event-card>
+  </div>
+  <h2 *ngIf="historicalEvents.length > 0">Historical Events</h2>
+  <div *ngFor="let event of historicalEvents" class="card-container">
+    <huddle-event-card
+      [event]="event"
+      [historical]="true"
+      ></huddle-event-card>
   </div>
 </div>

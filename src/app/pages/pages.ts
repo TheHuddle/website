@@ -2,6 +2,7 @@ import { HomeComponent } from './home/component';
 import { CodeOfConductComponent } from './code-of-conduct/component';
 import { AboutComponent } from './about/component';
 import { EventsComponent } from './events/component';
+import { EventDetailComponent } from './events/detail/component';
 import { ContactComponent } from './contact/component';
 import { LoginComponent } from './login/component';
 import { FirstLoginComponent } from './first-login/component';
@@ -34,6 +35,12 @@ export const Pages = [
       public: false,
       title: 'Events', icon: 'events',
       component: EventsComponent,
+    },
+    {
+      route: '/events/:id',
+      public: false,
+      title: 'Events', icon: null,
+      component: EventDetailComponent,
     },
     {
       route: '/contact',

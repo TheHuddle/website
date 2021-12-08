@@ -30,6 +30,8 @@ import { AboutComponent } from './about/component'
 import { CodeOfConductComponent } from './code-of-conduct/component'
 import { ContactCardComponent } from './contact/card/component'
 import { ContactComponent } from './contact/component'
+import { EventCardComponent } from './events/card/component'
+import { EventDetailComponent } from './events/detail/component'
 import { EventsComponent } from './events/component'
 import { FirstLoginComponent } from './first-login/component'
 import { HomeComponent } from './home/component'
@@ -41,6 +43,8 @@ const DeclarationsAndExports = [
   AboutComponent,
   CodeOfConductComponent,
   ContactComponent,
+  EventCardComponent,
+  EventDetailComponent,
   EventsComponent,
   FirstLoginComponent,
   HomeComponent,

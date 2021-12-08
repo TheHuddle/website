@@ -1,0 +1,85 @@
+#event-detail
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+.event-card
+  text-align: center
+  max-width: 700px
+  min-width: 700px
+  margin: 16px
+
+  @media only screen and (max-width: 800px)
+    max-width: 500px
+    min-width: 500px
+
+  @media only screen and (max-width: 600px)
+    max-width: 300px
+    min-width: 300px
+    margin: 8px
+
+.row
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: 100%
+
+
+#header
+  width: 100%
+  display: flex
+  justify-content: center
+
+#description-short
+  margin-bottom: 16px
+
+#dates
+  flex-direction: column
+
+  .date-title
+    font-weight: 600
+
+  .date-row
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    border: 1px dashed white
+    
+    & > *
+      margin: 8px
+
+    & > h3
+      width: calc(30% - 16px)
+
+    & > span
+      width: calc(70% - 16px)
+    
+  #stop
+    border-top: none
+    margin-bottom: 32px
+
+#action > *
+  min-width: 200px
+  max-width: 600px
+  width: 90%
+  font-weight: bold
+
+.rendered-content
+  margin: 0 auto
+  max-width: 400px
+
+  margin-bottom: 16px
+
+#description
+  max-width: 100%
+  margin-bottom: 32px
+
+h3
+  margin-bottom: 0
+
+button
+  text-transform: uppercase
