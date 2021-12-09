@@ -25,6 +25,7 @@ const MaterialImports = [
 
 import { ButtonsModule } from '@components/buttons/module'
 import { FilesModule } from '@components/files/module'
+import { MiniModule } from '@components/mini/module'
 
 import { AboutComponent } from './about/component'
 import { CodeOfConductComponent } from './code-of-conduct/component'
@@ -67,6 +68,7 @@ const DeclarationsAndExports = [
     ...MaterialImports,
     ButtonsModule,
     FilesModule,
+    MiniModule,
   ],
   exports: [
     ...DeclarationsAndExports,

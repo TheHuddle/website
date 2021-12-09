@@ -128,4 +128,12 @@
       </mat-card-footer>
     </mat-card>
   </div>
+  <div id="events" *ngIf="events.length > 0">
+    <h2>Event Participation</h2>
+    <div id="events-container">
+      <div *ngFor="let event of events">
+        <huddle-mini-event [event]="event"></huddle-mini-event>
+      </div>
+    </div>
+  </div>
 </div>

@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   public uploading = false
   public uploadingPassword = false
   public avatar = ''
+  public events: any[] = []
 
   private initial = {}
 
@@ -59,10 +60,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.form.disable();
     this.form.controls['discord_handle'].valueChanges.subscribe(handle => this.formatDiscordHandle(handle));
-    this.api.get('users/me').subscribe(result => this.refreshData(result.data));
+    this.api.get('users/me?fields=*,events.event_id.*').subscribe(result => this.refreshData(result.data));
   }
 
   refreshData(user) {
+    console.log(user)
+    if (this.events.length === 0) {
+      this.events = user.events.map(event => event.event_id)
+    }
     this.avatar = this.assets.get(user.avatar);
     this.initial = {...user, password: '', confirm: ''};
     this.form.patchValue(this.initial);
@@ -137,5 +142,12 @@ export class ProfileComponent implements OnInit {
         'users/me', {avatar: result},
       ).subscribe(result => this.refreshData(result.data));
     })
+  }
+
+  private setEventData(data) {
+    console.log(data)
+    this.events = data.map(event => {
+      return {...event};
+    });
   }
 }

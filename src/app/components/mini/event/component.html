@@ -1,0 +1,18 @@
+<mat-card
+  matTooltip="{{ event.start }} - {{ event.deadline }}"
+  matTooltipClass="tooltip"
+  matTooltipShowDelay="500"
+  matTooltipHidDelay="200"
+  >
+  <mat-card-content>
+    <div class="row">
+      <span>
+        {{event.label}} : <span class="italic">{{event.title}}</span>
+      </span>
+      <a class="hyperlink" [routerLink]="['/events', event.id]">details</a>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-progress-bar value="0" color="accent"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
