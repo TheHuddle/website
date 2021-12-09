@@ -55,7 +55,7 @@ dev-build:
 dev-run:
 	docker run --rm -it \
 		--publish=4200:4200 \
-		--mount src="$(PROJECT_ROOT)",target=/app,type=bind \
+		--mount src="$(PROJECT_ROOT)/src",target=/app/src,type=bind \
 		$(DEV_TAG) \
 		ng serve --host=0.0.0.0
 
@@ -70,7 +70,7 @@ prod-run: prod-build
 #####################################################################
 
 deploy:
-	$(MAKE) build-prod
+	$(MAKE) prod-build
 	$(MAKE) ecr-push
 	$(MAKE) publish
 

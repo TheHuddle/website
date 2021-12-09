@@ -1,8 +1,14 @@
 FROM node:14.15.5
-WORKDIR /
-RUN npm install -g @angular/cli
-COPY package.json package-lock.json ./
-RUN npm install --dev
-
 WORKDIR /app
+RUN npm install -g @angular/cli@13.0.2
+COPY package.json package-lock.json ./
+RUN npm install --also=dev
 EXPOSE 4200
+COPY \
+    angular.json \
+    karma.conf.js \
+    tsconfig.app.json \
+    tsconfig.json \
+    tsconfig.spec.json \
+    tslint.json \
+    ./
