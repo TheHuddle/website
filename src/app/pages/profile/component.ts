@@ -7,123 +7,107 @@ import { AssetsService } from '@services/assets.service'
 
 import { FileManagerDialogComponent } from '@components/files/dialog/component'
 
+import { ProfileForm } from '@forms/profile';
+import { PasswordForm } from '@forms/password';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './component.html',
   styleUrls: ['./component.sass']
 })
 export class ProfileComponent implements OnInit {
-  public editing = false
-  public editingPassword = false
   public loaded = false
-  public uploading = false
-  public uploadingPassword = false
-  public avatar = ''
+  public upload = ''
+  public editing = ''
 
+  public avatar = ''
   private initial = {}
 
-  public password: FormGroup = new FormGroup({
-    password: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    confirm: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    isPassword: new FormControl(true),
-  }, this.validatePasswordsEqual);
-
-  validatePasswordsEqual(group) {
-    const password = group.get('password')?.value
-    const confirm  = group.get('confirm')?.value
-
-    if (!password || !confirm || password === confirm) {
-      return null
-    } else {
-      return {'passwordDoesNotMatch': true };
-    }
-  }
-
-  public form: FormGroup = new FormGroup({
-    first_name: new FormControl('', [Validators.required]),
-    last_name: new FormControl(''),
-    pronouns: new FormControl(''),
-    discord_handle: new FormControl('', [Validators.required, Validators.pattern('^@.+$')]),
-    avatar: new FormControl(''),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    website: new FormControl(''),
-    in_logan: new FormControl(false, [Validators.required]),
-    bio: new FormControl(''),
-  })
   constructor(
     private api: ApiService,
     private assets: AssetsService,
     private dialog: MatDialog,
   ) { }
 
-  ngOnInit(): void {
-    this.form.disable();
-    this.form.controls['discord_handle'].valueChanges.subscribe(handle => this.formatDiscordHandle(handle));
-    this.api.get('users/me').subscribe(result => this.refreshData(result.data));
+  public forms = {
+    password: new PasswordForm(this.api),
+    profile: new ProfileForm(this.api),
   }
 
-  refreshData(user) {
+  ngOnInit(): void {
+    this.reset();
+    this.refreshUser();
+  }
+
+  private refreshUser() {
+    const query = `
+    query {
+      users_me {
+        avatar { id }
+        bio
+        discord_handle
+        email
+        first_name last_name
+        in_logan
+        pronouns
+        website
+      }
+    }
+    `;
+
+    const options = {isSystemQuery: true};
+    this.api.query(query, options).subscribe(
+      (result) => this.refresh(result.data),
+    );
+  }
+
+  private refresh(data) {
+    let user = data
+    if ( data.users_me ) {
+      user = data.users_me
+    }
     this.avatar = this.assets.get(user.avatar);
     this.initial = {...user, password: '', confirm: ''};
-    this.form.patchValue(this.initial);
-    this.form.markAsPristine();
 
-    this.password.patchValue(this.initial);
-    this.password.markAsPristine();
-
-    this.uploading = false;
-    this.uploadingPassword = false;
+    this.reset();
     this.loaded = true;
   }
 
+  reset() {
+    this.forms.password.group.disable()
+    this.forms.password.group.patchValue(this.initial);
+    this.forms.password.group.markAsPristine();
+
+    this.forms.profile.group.disable()
+    this.forms.profile.group.patchValue(this.initial);
+    this.forms.profile.group.markAsPristine();
+
+    this.upload = ''
+    this.editing = ''
+  }
+
+
   submit(form) {
-    if (!form.valid) return;
-    let data = {}
-    form.disable();
+    if (!form.group.valid) return;
+    this.upload = form.name
+    this.loaded = false
 
-    this.editingPassword = false;
-    this.editing = false;
-
-    if (form.get('isPassword')?.value) {
-      this.uploadingPassword = true;
-      data = {password: form.get('password').value}
-    } else {
-      this.uploading = true;
-      data = form.value
-    }
-    this.loaded = false;
-
-    this.api.patch(
-      'users/me',
-      data,
-    ).subscribe(result => this.refreshData(result.data));
+    form.submit().subscribe(
+      result => this.refresh(result.data),
+    );
   }
 
   edit(form) {
     if (!this.loaded) return;
-    this.discard(this.form);
-    this.discard(this.password);
+    this.reset();
 
-    form.enable()
-    if (form.get('isPassword')?.value) {
-      this.editingPassword = true;
-    } else {
-      this.editing = true;
-    }
-  }
-
-  discard(form) {
-    form.disable();
-    form.patchValue(this.initial);
-    form.markAsPristine();
-    this.editing = false;
-    this.editingPassword = false;
-  }
-
-  private formatDiscordHandle(handle) {
-    if ( /^@/.test(handle) ) return;
-
-    this.form.controls['discord_handle'].setValue(`@${handle}`)
+    form.group.enable()
+    this.editing = form.name
+    console.log({
+      editing: this.editing,
+      upload: this.upload,
+      profile: this.forms.profile.group.valid,
+    })
   }
 
   openDialog() {
@@ -131,11 +115,9 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return
-      this.form.disable()
-      this.uploading = true
-      this.api.patch(
-        'users/me', {avatar: result},
-      ).subscribe(result => this.refreshData(result.data));
+      this.reset();
+      this.upload = 'avatar'
+      this.refreshUser();
     })
   }
 }

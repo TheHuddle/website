@@ -8,6 +8,7 @@
 			"@environment": ["environments/environment"],
 			"@pages/*": ["app/pages/*"],
 			"@services/*": ["app/services/*"],
+			"@forms/*": ["app/forms/*"],
 			"@nav/*": ["app/nav/*"]
 		},
     "outDir": "./dist/out-tsc",

@@ -3,11 +3,13 @@
     <mat-card id="user-details">
       <span class="row center">
         <img mat-card-avatar src="{{avatar}}" *ngIf="loaded" class="avatar">
-        <span *ngIf="!loaded" id="spinner-container"><mat-spinner [diameter]="100"></mat-spinner></span>
+        <span *ngIf="!loaded || upload === 'avatar'"
+          id="spinner-container"
+          ><mat-spinner [diameter]="100"></mat-spinner></span>
       </span>
       <div id="actions-container">
-        <form [formGroup]="password" (ngSubmit)="submit(password)" id="password-change-form">
-          <span class="row" *ngIf="editingPassword || uploadingPassword">
+        <form [formGroup]="forms.password.group" (ngSubmit)="submit(forms.password)" id="password-change-form">
+          <span class="row" *ngIf="editing === 'password'">
             <mat-form-field id="form-password">
               <mat-label>new password</mat-label>
               <input type="password" matInput formControlName="password">
@@ -17,41 +19,41 @@
               <input type="password" matInput formControlName="confirm">
             </mat-form-field>
           </span>
-          <mat-error *ngIf="password.invalid && password.hasError('passwordDoesNotMatch')">passwords do not match</mat-error>
-          <span *ngIf="editingPassword || uploadingPassword">
+          <mat-error
+            *ngIf="forms.password.group.invalid && forms.password.group.hasError('passwordDoesNotMatch')"
+            >passwords do not match</mat-error>
+          <span *ngIf="editing === 'password'">
             <button
               mat-stroked-button
               color="warn"
-              (click)="discard(form)"
-              [disabled]="uploading"
+              (click)="reset()"
+              [disabled]="!!upload"
               >Cancel</button>
             <button
               mat-stroked-button
               type="submit"
               color="accent"
-              [disabled]="password.pristine || password.invalid || uploading"
+              [disabled]="forms.password.group.pristine || forms.password.group.invalid || !!upload"
               >Change Password</button>
           </span>
         </form>
-        <span class="row centered" *ngIf="!editingPassword && !editing">
+        <span class="row centered" *ngIf="!editing">
           <button
             mat-button
-            *ngIf="!editing && !uploading"
             (click)="openDialog()"
             [disabled]="!loaded"
             color="accent"
             >Change Avatar</button>
           <button
             mat-button
-            *ngIf="!editing && !uploading"
-            (click)="edit(password)"
+            (click)="edit(forms.password)"
             [disabled]="!loaded"
             color="warn"
             >Change Password</button>
           </span>
       </div>
       <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit(form)">
+        <form [formGroup]="forms.profile.group" (ngSubmit)="submit(forms.profile)">
           <span class="row">
             <mat-form-field id="form-first-name">
               <mat-label>first name</mat-label>
@@ -72,6 +74,9 @@
             <mat-form-field id="form-discord-handle">
               <mat-label>discord handle</mat-label>
               <input type="text" matInput placeholder="@tuxruleslinux" formControlName="discord_handle">
+            <mat-error
+              *ngIf="forms.profile.group.controls['discord_handle'].hasError('globalHandle')"
+              >cannot be a global handle</mat-error>
             </mat-form-field>
             <mat-form-field id="form-pronouns">
               <mat-label>pronouns</mat-label>
@@ -86,45 +91,44 @@
             <mat-checkbox type="text" formControlName="in_logan">in logan</mat-checkbox>
           </span>
           <span class="row" id="bio-row" >
-            <mat-form-field *ngIf="editing || uploading">
+            <mat-form-field *ngIf="editing === 'profile'">
               <mat-label>bio</mat-label>
               <textarea rows="7" matInput appearance="fill" placeholder="bio" formControlName="bio">
               </textarea>
             </mat-form-field>
-            <h4>{{ form.enabled ? "bio preview" : "bio"}}</h4>
-            <hr *ngIf="form.enabled">
-            <div [innerHTML]="form.controls['bio'].value || '<em>nothing to see :c</em>'"></div>
+            <h4>{{ forms.profile.group.enabled ? "bio preview" : "bio"}}</h4>
+            <hr *ngIf="forms.profile.group.enabled">
+            <div [innerHTML]="forms.profile.group.controls['bio'].value || '<em>nothing to see :c</em>'"></div>
             <hr>
           </span>
           <span class="row">
             <button
               mat-stroked-button
-              *ngIf="!editing && !uploading"
-              (click)="edit(form)"
+              *ngIf="!editing"
+              (click)="edit(forms.profile)"
               [disabled]="!loaded"
               >Edit Profile</button>
             <button
               mat-stroked-button
-              *ngIf="editing || uploading"
+              *ngIf="editing"
               color="warn"
-              (click)="discard(form)"
-              [disabled]="uploading"
-              >{{ form.dirty ? 'Discard Changes' : 'Cancel' }}</button>
+              (click)="reset()"
+              [disabled]="!!upload"
+              >{{ forms.profile.group.dirty ? 'Discard Changes' : 'Cancel' }}</button>
             <button
               mat-stroked-button
-              *ngIf="editing || uploading"
+              *ngIf="editing"
               type="submit"
-              mat-button
               color="accent"
-              [disabled]="form.pristine || form.invalid || uploading"
+              [disabled]="forms.profile.group.pristine || forms.profile.group.invalid || !!upload"
               >Save Changes</button>
           </span>
         </form>
       </mat-card-content>
       <mat-card-footer>
-        <mat-progress-bar *ngIf="!editing && !uploading" value="100" color="primary"></mat-progress-bar>
+        <mat-progress-bar *ngIf="!editing && !upload" value="100" color="primary"></mat-progress-bar>
         <mat-progress-bar *ngIf="editing" value="0" color="primary"></mat-progress-bar>
-        <mat-progress-bar *ngIf="uploading" mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar *ngIf="!!upload" mode="indeterminate"></mat-progress-bar>
       </mat-card-footer>
     </mat-card>
   </div>
