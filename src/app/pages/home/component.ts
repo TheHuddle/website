@@ -12,12 +12,15 @@ export class HomeComponent implements OnInit {
   discordHandle = '@'
 
   constructor(
-    private apiService: ApiService,
+    private api: ApiService,
   ) { }
 
   ngOnInit(): void {
-    this.apiService.get('users/me').subscribe(
-      x => this.discordHandle = x.data.discord_handle
+    const query = `query { users_me { discord_handle } }`;
+    this.api.query(query, {isSystemQuery: true}).subscribe(
+      (result) => {
+        this.discordHandle = result.data.users_me.discord_handle;
+      },
     );
   }
 

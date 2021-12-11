@@ -67,4 +67,11 @@ export class ApiService {
     this.authService.refresh();
     return x;
   }
+
+  query(query: string, {isSystemQuery = false, variables = {}}={}) {
+    return this.post(
+      isSystemQuery ? 'graphql/system' : 'graphql',
+      JSON.stringify({query:query, variables:variables}),
+    )
+  }
 }

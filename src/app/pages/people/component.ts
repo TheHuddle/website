@@ -16,20 +16,19 @@ export class PeopleComponent implements OnInit {
   avatar = ''
 
   public form: FormGroup = new FormGroup({
-    first_name: new FormControl(''),
-    last_name: new FormControl(''),
-    pronouns: new FormControl(''),
-    discord_handle: new FormControl(''),
-    avatar: new FormControl(''),
-    email: new FormControl(''),
-    website: new FormControl(''),
-    bio: new FormControl(''),
+    first_name     : new FormControl(''),
+    last_name      : new FormControl(''),
+    pronouns       : new FormControl(''),
+    discord_handle : new FormControl(''),
+    email          : new FormControl(''),
+    website        : new FormControl(''),
+    bio            : new FormControl(''),
   })
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private apiService: ApiService,
+    private api: ApiService,
     private assets: AssetsService,
   ) {}
 
@@ -41,21 +40,41 @@ export class PeopleComponent implements OnInit {
     );
   }
 
-  getUserData(userId) {
-    this.apiService.get(`users/${userId}`).subscribe(
+  private getUserData(userId) {
+    const query = `
+    query($id: ID!) {
+      users_by_id(id: $id) {
+        avatar { id }
+        bio
+        discord_handle
+        first_name last_name
+        pronouns
+        website
+      }
+    }
+    `;
+
+    const options = {
+      isSystemQuery: true,
+      variables: {
+        id: userId,
+      }
+    }
+    this.api.query(query, options).subscribe(
       result => this.updateUser(result.data),
       error => this.error(),
     );
   }
 
-  updateUser(user) {
-    this.form.patchValue(user)
+  private updateUser(data) {
+    const user = data.users_by_id;
+    this.form.patchValue(user);
     this.avatar = this.assets.get(user.avatar);
     this.success = true
     this.loading = false
   }
 
-  error() {
+  private error() {
     this.loading = false
     this.success = false
     this.router.navigate(['/'])

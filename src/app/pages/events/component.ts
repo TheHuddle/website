@@ -19,14 +19,30 @@ export class EventsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.api.get('items/Event').subscribe(
+    this.getEventData();
+  }
+
+  private getEventData() {
+    const query = `
+    query {
+      Event {
+        deadline
+        start
+        title
+        label
+        description_short
+        id
+      }
+    }
+    `
+    this.api.query(query).subscribe(
       events => this.setEventData(events.data),
     );
   }
 
   private setEventData(data) {
     const today = moment()
-    data.map(event => {
+    data.Event.map(event => {
       const start = moment(event.start);
       const stop  = moment(event.deadline);
 
@@ -38,10 +54,11 @@ export class EventsComponent implements OnInit {
     });
 
     if ( this.currentEvents.length < 1 ) {
-      this.currentEvents = [{
-      }]
+      this.currentEvents = [{}];
     }
 
-    this.historicalEvents.sort((a,b) => ( Number(a.label) > Number(b.label) ? 1 : -1))
+    this.historicalEvents.sort(
+      (a,b) => ( Number(a.label) > Number(b.label) ? 1 : -1)
+    );
   }
 }

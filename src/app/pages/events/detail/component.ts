@@ -7,7 +7,7 @@ import { ApiService } from '@services/api.service'
 
 
 @Component({
-  selector: 'app-events',
+  selector: 'app-event-detail',
   templateUrl: './component.html',
   styleUrls: ['./component.sass']
 })
@@ -29,15 +29,29 @@ export class EventDetailComponent implements OnInit {
     );
   }
 
-  private getEventData(id) {
-    this.api.get(`items/Event/${id}`).subscribe(
+  private getEventData(eventId) {
+    const query = `
+      query($id: ID!) {
+        Event_by_id(id: $id) {
+          deadline
+          description
+          label
+          prizes
+          rules
+          start
+          title
+        }
+      }
+    `;
+    const options = {variables: {id:eventId}}
+    this.api.query(query, options).subscribe(
       result => this.setEventData(result.data),
       error => this.loading = false,
     );
   }
 
   private setEventData(data) {
-    this.event = data;
+    this.event = data.Event_by_id;
 
     if ( !this.event.title ) {
       this.loading = false;

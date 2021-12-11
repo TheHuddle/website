@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { environment } from '../../environments/environment';
+import { environment } from '@environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,11 @@ export class AssetsService {
 
   constructor() { }
 
-  get(suffix: string): string {
-    return `${environment.apiBase}/assets/${suffix}`;
+  get(asset: any): string {
+    if (typeof asset === 'string') {
+      return `${environment.apiBase}/assets/${asset}`;
+    } else {
+      return `${environment.apiBase}/assets/${asset.id}`;
+    }
   }
 }
