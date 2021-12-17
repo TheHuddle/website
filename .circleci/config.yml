@@ -1,26 +1,30 @@
 version: 2.1
 
+aliases:
+  - &junit-results
+      ./dist/junit
+
 orbs:
+  browser-tools: circleci/browser-tools@1.1.0
   node: circleci/node@4.7
   aws-ecr: circleci/aws-ecr@7.3.0
 
 jobs:
   test:
     docker:
-      - image: cimg/node:14.15
+      - image: cimg/node:14.15-browsers
     steps:
+      - browser-tools/install-browser-tools
       - checkout
-      - restore_cache:
-          keys:
-            - website-{{checksum "./package.json"}}
       - node/install-packages:
           pkg-manager: npm
-      - save_cache:
-          paths: [ ./ ]
-          key: website-{{checksum "./package.json"}}
       - run:
           name: run tests
-          command: npm test
+          command: npm run test:ci
+      - store_test_results:
+          path: *junit-results
+      - store_artifacts:
+          path: *junit-results
 
 workflows:
   build:
@@ -31,7 +35,7 @@ workflows:
           no-output-timeout: 5m
           filters:
             branches:
-              only: master
+              only: main
           repo: codehuddle
           path: ./docker
           tag: 'app-circleci'
