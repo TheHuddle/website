@@ -20,7 +20,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: run tests
-          command: CHROME_BIN=/usr/bin/google-chrome npm run test:ci
+          command: npm run test:ci
       - store_test_results:
           path: *junit-results
       - store_artifacts:
