@@ -1,0 +1,37 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+  aws-ecr: circleci/aws-ecr@7.3.0
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:14.15
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - website-{{checksum "./package.json"}}
+      - node/install-packages:
+          pkg-manager: npm
+      - save_cache:
+          paths: [ ./ ]
+          key: website-{{checksum "./package.json"}}
+      - run:
+          name: run tests
+          command: npm test
+
+workflows:
+  build:
+    jobs:
+      - test
+      - aws-ecr/build-and-push-image:
+          requires: [ test ]
+          no-output-timeout: 5m
+          filters:
+            branches:
+              only: master
+          repo: codehuddle
+          path: ./docker
+          tag: 'app-circleci'
