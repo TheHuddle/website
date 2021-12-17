@@ -1,20 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { DiscordComponent } from './discord.component';
+import { DiscordButtonComponent } from './component'
 
-describe('DiscordComponent', () => {
-  let component: DiscordComponent;
-  let fixture: ComponentFixture<DiscordComponent>;
+describe('DiscordButtonComponent', () => {
+  let component: DiscordButtonComponent;
+  let fixture: ComponentFixture<DiscordButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiscordComponent ]
+      declarations: [ DiscordButtonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiscordComponent);
+    fixture = TestBed.createComponent(DiscordButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
