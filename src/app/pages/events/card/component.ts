@@ -13,7 +13,7 @@ export class EventCardComponent implements OnInit {
   public readonly datestring = 'dddd MMMM D[<span class="mobile-hide">, ]YYYY[</span>] [<br>at] hh:mma'
 
   ngOnInit(): void {
-	if (!this.event.none_events) {
+	if (this.event && this.event.start & this.event.deadline) {
       this.event.start = moment(this.event.start).format(this.datestring);
       this.event.deadline = moment(this.event.deadline).format(this.datestring);
 	}

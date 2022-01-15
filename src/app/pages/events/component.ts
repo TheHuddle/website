@@ -54,7 +54,7 @@ export class EventsComponent implements OnInit {
     });
 
     if ( this.currentEvents.length < 1 ) {
-      this.currentEvents = [{none_events: true}];
+      this.currentEvents = [{}];
     }
 
     this.historicalEvents.sort(
