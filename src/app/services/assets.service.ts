@@ -10,7 +10,10 @@ export class AssetsService {
   constructor() { }
 
   get(asset: any): string {
-    if (typeof asset === 'string') {
+    if ( asset === null ) {
+      // @TODO insert default asset for null asset retrieval
+      return '';
+    } else if (typeof asset === 'string') {
       return `${environment.apiBase}/assets/${asset}`;
     } else {
       return `${environment.apiBase}/assets/${asset.id}`;
