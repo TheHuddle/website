@@ -11,7 +11,7 @@ export class AssetsService {
 
   get(asset: any): string {
     if ( asset === null ) {
-      return '/assets/default_profile.png';
+      return `${environment.apiBase}/assets/default_profile.png`;
     } else if (typeof asset === 'string') {
       return `${environment.apiBase}/assets/${asset}`;
     } else {
