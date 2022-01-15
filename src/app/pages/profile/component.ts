@@ -117,7 +117,9 @@ export class ProfileComponent implements OnInit {
       if (!result) return
       this.reset();
       this.upload = 'avatar'
-      this.refreshUser();
+      this.api.patch(
+        'users/me', {avatar: result},
+      ).subscribe(result => this.refreshUser());
     })
   }
 }
