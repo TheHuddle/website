@@ -3,11 +3,14 @@ version: 2.1
 aliases:
   - &junit-results
       ./dist/junit
+  - &deployment-context
+      cloud.codehuddle.org
 
 orbs:
   browser-tools: circleci/browser-tools@1.1.0
   node: circleci/node@4.7
   aws-ecr: circleci/aws-ecr@7.3.0
+  aws-cli: circleci/aws-cli@2.0
 
 executors:
   test-runner:
@@ -30,17 +33,29 @@ jobs:
           path: *junit-results
       - store_artifacts:
           path: *junit-results
-        
+  publish: 
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup
+      - run: /home/circleci/project/.circleci/bin/publish
 
 workflows:
   build:
     jobs:
       - test
       - aws-ecr/build-and-push-image:
+          context: *deployment-context
           filters:
             branches:
-              only: ww-cideploymenttest
-          context: cloud.codehuddle.org
+              only: main
           repo: codehuddle
-          path: ./docker
-          tag: 'app-circleci'
+          dockerfile: ./docker/Dockerfile
+          tag: 'app'
+          workspace-root: ./project
+      - publish:
+          requires: [aws-ecr/build-and-push-image]
+          context: *deployment-context
+          filters:
+            branches:
+              only: main
