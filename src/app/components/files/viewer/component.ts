@@ -40,12 +40,6 @@ export class FileViewerComponent implements OnInit {
     );
   }
 
-  addImage(image) {
-    if (image) {
-      this.images.unshift(this.makeImageComponentStruct(image))
-    }
-  }
-
   select(id) {
     if ( this.selected === id ) {
       this.selected = ''

@@ -65,7 +65,7 @@ export class FileUploaderComponent {
     this.progress = 0
     this.form.enable()
 
-    this.fileViewer.addImage(x.data)
+    this.fileViewer.updateImages()
   }
 
   private failure() {
