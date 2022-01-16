@@ -9,12 +9,17 @@ orbs:
   node: circleci/node@4.7
   aws-ecr: circleci/aws-ecr@7.3.0
 
-jobs:
-  test:
+executors:
+  test-runner:
     docker:
       - image: cimg/node:14.15-browsers
+    resource_class: medium
+
+jobs:
+  test:
+    executor: test-runner
     steps:
-      - browser-tools/install-browser-tools
+      - browser-tools/install-chrome
       - checkout
       - node/install-packages:
           pkg-manager: npm
@@ -25,17 +30,17 @@ jobs:
           path: *junit-results
       - store_artifacts:
           path: *junit-results
+        
 
 workflows:
   build:
     jobs:
       - test
       - aws-ecr/build-and-push-image:
-          requires: [ test ]
-          no-output-timeout: 5m
           filters:
             branches:
-              only: main
+              only: ww-cideploymenttest
+          context: cloud.codehuddle.org
           repo: codehuddle
           path: ./docker
           tag: 'app-circleci'
