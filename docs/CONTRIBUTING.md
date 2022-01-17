@@ -55,14 +55,28 @@ If your pull request relates to an issue, please link the issue.
 Leave a concise description of the bug-fix or feature your code includes.
 Like with issues, include screenshots and additional information where necessary.
 
-#### 4. Request review from a core team member
-This alerts the core team to review your pull request.
-You may receive a review labelled "Request changes."
-Please remember, this is a very normal part of the code-review process!
+#### 4.1 CI - Formatting
+Before a pull request can be accepted, your code must pass both a *formatting check* and *automated tests*.
+The format check will run before the tests.
+This means formatting is required for your code to be accepted!
 
-#### 5. Done!
+After running `npm install`, a friendly pre-commit hook will automatically run each time as you commit.
+This means you should only experience issues with formatting in the CI if you intentionally bypass this hook.
+
+Please see the [`package.json`](../package.json) for more details on manual invocation.
+
+#### 4.2 CI - Tests
+The automated testing pipeline will run as soon as you make a pull request from your fork.
+**If tests fail, your pull request cannot be accepted**.
+
+#### 5. Request review
+Reviewers are assigned by community-run triage.
+Within a day or two, you can expect a reviewer to be assigned to your pull request.
+If a reviewer is not assigned to your pull request within a few days, feel free to reach out to a core team member on the discord!
+
+#### 6. Done!
 After your pull request has been reviewed, the core team will merge your pull request.
-It is good practice to clean up the branches on your fork.
+Changes will deploy through automated CI pipelines monitored by the core member who merges your request and will typically be live about 5-10 minutes after being merged.
 
 ### Development troubles
 If you are having trouble getting code to work, the community is available to help!

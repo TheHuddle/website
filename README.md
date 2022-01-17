@@ -11,16 +11,21 @@ This is the community portal for [The Huddle](https://codehuddle.org)!
 ## Developer Setup
 If it's your first time, be sure to check out our [Contribution Guide](./docs/CONTRIBUTING.md).
 
-### Setup
-The website is designed to run in a containerized environment.
-Serving your local development server is facilitated by the `make` utility.
+### NPM
+With the appropriate version of `node` and `npm`, you can simply clone this repository and run
+```
+npm install
+```
 
-1. [Install `docker` for your appropriate platform](https://docs.docker.com/get-started/)
-2. [Install `make` for your appropriate platform](https://www.gnu.org/software/make/)
-3. Clone this repository to your local development environment
+### Docker
+On production, the application runs in a container.
+Always review changes in a production container locally before making a pull request!
 
-After the setup above, you can run the development server in a container by running `make serve`.
-This runs as the [angular development server](https://angular.io/cli/serve), which has many helpful features like live-reloading.
-Once your container is successfully running, you can access the local webpage by navigating to `localhost:4200` in your web browser.
+Serving containerized builds is facilitated by the `make` utility.
 
-For more information on other make commands, run `make help`.
+1. [Install `docker` for the appropriate platform](https://docs.docker.com/get-started/)
+2. [Install `make` for the appropriate platform](https://www.gnu.org/software/make/)
+3. Clone this repository to a local development environment
+4. Run `make help` to review build options
+
+The container's application is exposed on the host machine at `0.0.0.0:4200`.

@@ -2,6 +2,7 @@
   "name": "the-huddle",
   "version": "0.0.0",
   "scripts": {
+    "prepare": "husky install",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -9,8 +10,7 @@
     "test": "ng test -- --watch=false",
     "format": "prettier --write .",
     "ci:check-format": "prettier --check .",
-    "ci:test": "ng test -- --watch=false",
-    "prepare": "husky install"
+    "ci:test": "ng test -- --watch=false"
   },
   "private": true,
   "dependencies": {

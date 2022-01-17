@@ -1,16 +1,17 @@
+---
 version: 2.1
 
 aliases:
   - &junit-results
-      ./dist/junit
+    ./dist/junit
   - &deployment-context
-      cloud.codehuddle.org
+    cloud.codehuddle.org
 
 orbs:
+  aws-cli: circleci/aws-cli@2.0
+  aws-ecr: circleci/aws-ecr@7.3.0
   browser-tools: circleci/browser-tools@1.1.0
   node: circleci/node@4.7
-  aws-ecr: circleci/aws-ecr@7.3.0
-  aws-cli: circleci/aws-cli@2.0
 
 executors:
   test-runner:
@@ -24,6 +25,7 @@ jobs:
     steps:
       - browser-tools/install-chrome
       - checkout
+      - run: git rebase origin/main
       - node/install-packages:
           pkg-manager: npm
       - run:
@@ -36,7 +38,8 @@ jobs:
           path: *junit-results
       - store_artifacts:
           path: *junit-results
-  publish: 
+
+  publish:
     executor: aws-cli/default
     steps:
       - checkout
@@ -47,6 +50,7 @@ workflows:
   build:
     jobs:
       - test
+
       - aws-ecr/build-and-push-image:
           requires: [test]
           context: *deployment-context
@@ -57,6 +61,7 @@ workflows:
           dockerfile: ./docker/Dockerfile
           tag: 'app'
           workspace-root: ./project
+
       - publish:
           requires: [aws-ecr/build-and-push-image]
           context: *deployment-context

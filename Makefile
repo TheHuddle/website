@@ -21,7 +21,7 @@ endif
 
 default: help
 
-serve: build serve # run local container in angular development mode
+serve: build serve # run angular development server in a container
 .: # ---
 
 build: build-prod # build production container
