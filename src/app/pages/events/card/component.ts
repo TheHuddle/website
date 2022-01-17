@@ -10,8 +10,7 @@ import * as moment from 'moment';
 export class EventCardComponent implements OnInit {
   @Input() event: any;
   @Input() historical: boolean = false;
-  public readonly datestring =
-    'dddd MMMM D[<span class="mobile-hide">, ]YYYY[</span>] [<br>at] hh:mma';
+  public readonly datestring = 'dddd MMMM D[<span class="mobile-hide">, ]YYYY[</span>] [<br>at] hh:mma';
 
   ngOnInit(): void {
 	if (this.event && this.event.start && this.event.deadline) {
