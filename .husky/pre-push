@@ -1,12 +1,14 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "Running tests before pushing... (--no-verify to bypass)"
+echo "Running push pre-flight checks... (--no-verify to bypass)"
 
-npm test && echo -e "\
+npm run ci:check-format \
+	&& npm test \
+	&& echo -e "\
  ___ _   _  ___ ___ ___  ___ ___  \n\
 / __| | | |/ __/ __/ _ \/ __/ __| \n\
 \__ \ |_| | (_| (_|  __/\__ \__ \ \n\
 |___/\__,_|\___\___\___||___/___/ \n\
                                  
-"
+" || echo 'ERROR:Failed pre-push checks. Refusing to push to remote.'

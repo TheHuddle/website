@@ -25,7 +25,6 @@ Serving containerized builds is facilitated by the `make` utility.
 
 1. [Install `docker` for the appropriate platform](https://docs.docker.com/get-started/)
 2. [Install `make` for the appropriate platform](https://www.gnu.org/software/make/)
-3. Clone this repository to a local development environment
-4. Run `make help` to review build options
+3. Run `make help` to review build options
 
 The container's application is exposed on the host machine at `0.0.0.0:4200`.

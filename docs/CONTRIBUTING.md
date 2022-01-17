@@ -63,7 +63,7 @@ This means formatting is required for your code to be accepted!
 After running `npm install`, a friendly pre-commit hook will automatically run each time as you commit.
 This means you should only experience issues with formatting in the CI if you intentionally bypass this hook.
 
-Please see the [`package.json`](../package.json) for more details on manual invocation.
+Please see the [`package.json`](../package.json) for more details on manually invoking the formatter.
 
 #### 4.2 CI - Tests
 The automated testing pipeline will run as soon as you make a pull request from your fork.
