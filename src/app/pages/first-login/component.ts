@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-first-login',
   templateUrl: './component.html',
-  styleUrls: ['./component.sass']
+  styleUrls: ['./component.sass'],
 })
 export class FirstLoginComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

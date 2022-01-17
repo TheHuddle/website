@@ -3,15 +3,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AssetsService {
-
-  constructor() { }
+  constructor() {}
 
   get(asset: any): string {
     if ( asset === null ) {
-      return `${environment.apiBase}/assets/default_profile.png`;
+      return `${environment.apiBase}/assets/default.png`;
     } else if (typeof asset === 'string') {
       return `${environment.apiBase}/assets/${asset}`;
     } else {

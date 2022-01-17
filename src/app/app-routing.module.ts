@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from '@services/auth.guard';
 import { Pages } from './pages/pages';
 
-const pages = Pages.map(page => {
+const pages = Pages.map((page) => {
   if (page.public) {
-    return { path: page.route.substring(1), component: page.component }
+    return { path: page.route.substring(1), component: page.component };
   }
-  return { path: page.route.substring(1), component: page.component, canActivate: [AuthGuard] }
+  return {
+    path: page.route.substring(1),
+    component: page.component,
+    canActivate: [AuthGuard],
+  };
 });
 
 const routes: Routes = [
@@ -19,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

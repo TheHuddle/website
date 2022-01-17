@@ -1,16 +1,14 @@
-<div class="page-container" style="user-select:none">
-  <mat-spinner style="margin: 0 auto" *ngIf="currentEvents.length < 1"></mat-spinner>
+<div class="page-container" style="user-select: none">
+  <mat-spinner
+    style="margin: 0 auto"
+    *ngIf="currentEvents.length < 1"
+  ></mat-spinner>
   <h2 *ngIf="currentEvents.length > 0">Active Events</h2>
   <div *ngFor="let event of currentEvents" class="card-container">
-    <huddle-event-card
-      [event]="event"
-      ></huddle-event-card>
+    <huddle-event-card [event]="event"></huddle-event-card>
   </div>
   <h2 *ngIf="historicalEvents.length > 0">Historical Events</h2>
   <div *ngFor="let event of historicalEvents" class="card-container">
-    <huddle-event-card
-      [event]="event"
-      [historical]="true"
-      ></huddle-event-card>
+    <huddle-event-card [event]="event" [historical]="true"></huddle-event-card>
   </div>
 </div>

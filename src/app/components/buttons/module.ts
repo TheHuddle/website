@@ -5,29 +5,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-const MaterialImports = [
-  MatIconModule,
-  MatTooltipModule,
-  MatButtonModule,
-]
+const MaterialImports = [MatIconModule, MatTooltipModule, MatButtonModule];
 
 import { DiscordButtonComponent } from './discord/component';
 
-const DeclarationsAndExports = [
-    DiscordButtonComponent,
-]
-
+const DeclarationsAndExports = [DiscordButtonComponent];
 
 @NgModule({
-  declarations: [
-    ...DeclarationsAndExports,
-  ],
-  imports: [
-    CommonModule,
-    ...MaterialImports,
-  ],
-  exports: [
-    ...DeclarationsAndExports,
-  ],
+  declarations: [...DeclarationsAndExports],
+  imports: [CommonModule, ...MaterialImports],
+  exports: [...DeclarationsAndExports],
 })
-export class ButtonsModule { }
+export class ButtonsModule {}

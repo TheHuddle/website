@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiscordButtonComponent } from './component'
+import { DiscordButtonComponent } from './component';
 
 describe('DiscordButtonComponent', () => {
   let component: DiscordButtonComponent;
@@ -8,9 +9,9 @@ describe('DiscordButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiscordButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [DiscordButtonComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +20,5 @@ describe('DiscordButtonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(component).toBeTruthy());
 });

@@ -5,9 +5,9 @@ import { environment } from '@environment';
 @Component({
   selector: 'mat-discord-button',
   templateUrl: './component.html',
-  styleUrls: ['./component.sass']
+  styleUrls: ['./component.sass'],
 })
 export class DiscordButtonComponent {
   @Input() public link: string = environment.discordLink;
-  @Input() public text: string = ''
+  @Input() public text: string = '';
 }

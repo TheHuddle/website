@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+printf "Prettifying (--no-verify to bypass)..."
+npx pretty-quick --staged >/dev/null 2>&1 \
+	&& echo 'OK' || echo 'FAILED; please check the output of `npm run format`'
