@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-code-of-conduct',
   templateUrl: './component.html',
-  styleUrls: ['./component.sass']
+  styleUrls: ['./component.sass'],
 })
 export class CodeOfConductComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

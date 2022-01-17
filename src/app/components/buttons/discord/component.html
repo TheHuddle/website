@@ -1,13 +1,21 @@
-<a mat-icon-button class="discord-icon"
-   *ngIf="!text"
-   href="{{link}}" target="_blank"
-   matTooltip="goto :discord"
-   matTooltipClass="tooltip"
-   matTooltipShowDelay="500"
-   matTooltipHidDelay="200"
-   ><mat-icon>discord</mat-icon></a>
-<a mat-button class="discord-button"
-   *ngIf="text"
-   href="{{link}}" target="_blank"
-   color="accent"
-   >{{text}} <mat-icon>discord</mat-icon></a>
+<a
+  mat-icon-button
+  class="discord-icon"
+  *ngIf="!text"
+  href="{{link}}"
+  target="_blank"
+  matTooltip="goto :discord"
+  matTooltipClass="tooltip"
+  matTooltipShowDelay="500"
+  matTooltipHidDelay="200"
+  ><mat-icon>discord</mat-icon></a
+>
+<a
+  mat-button
+  class="discord-button"
+  *ngIf="text"
+  href="{{link}}"
+  target="_blank"
+  color="accent"
+  >{{text}} <mat-icon>discord</mat-icon></a
+>

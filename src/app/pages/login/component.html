@@ -1,12 +1,22 @@
 <div class="page-container">
-  <mat-card id='login'>
+  <mat-card id="login">
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="submit()" (keyup.enter)="submit()">
         <mat-form-field>
-          <input type="text" matInput placeholder="email address" formControlName="email">
+          <input
+            type="text"
+            matInput
+            placeholder="email address"
+            formControlName="email"
+          />
         </mat-form-field>
         <mat-form-field>
-          <input type="password" matInput placeholder="password" formControlName="password">
+          <input
+            type="password"
+            matInput
+            placeholder="password"
+            formControlName="password"
+          />
         </mat-form-field>
         <!-- @TODO : Implement password reset page
         <a class="hyperlink" id="password-reset" [disabled]="true">forgot password?</a>
@@ -15,16 +25,34 @@
       </form>
     </mat-card-content>
     <mat-card-footer>
-      <mat-progress-bar *ngIf='!loggingIn && !failedLogin' value="{{validBar}}" color="accent"></mat-progress-bar>
-      <mat-progress-bar *ngIf='loggingIn' mode="indeterminate"></mat-progress-bar>
-      <mat-progress-bar *ngIf='failedLogin' mode="determinate" value="100" color="warn" ></mat-progress-bar>
+      <mat-progress-bar
+        *ngIf="!loggingIn && !failedLogin"
+        value="{{validBar}}"
+        color="accent"
+      ></mat-progress-bar>
+      <mat-progress-bar
+        *ngIf="loggingIn"
+        mode="indeterminate"
+      ></mat-progress-bar>
+      <mat-progress-bar
+        *ngIf="failedLogin"
+        mode="determinate"
+        value="100"
+        color="warn"
+      ></mat-progress-bar>
     </mat-card-footer>
   </mat-card>
 
   <span>
-    Is it your first time? Fill out our <a class="hyperlink" target="_blank" href="{{registrationLink}}">registration form</a>.
+    Is it your first time? Fill out our
+    <a class="hyperlink" target="_blank" href="{{registrationLink}}"
+      >registration form</a
+    >.
   </span>
 
   <!-- @TODO : Implement password reset page -->
-  <span><br><br>If you've forgotten your password, please contact an @admin</span>
+  <span
+    ><br /><br />If you've forgotten your password, please contact an
+    @admin</span
+  >
 </div>

@@ -27,8 +27,11 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          name: check format
+          command: npm run ci:check-format
+      - run:
           name: run tests
-          command: npm run test:ci
+          command: npm run ci:test
       - store_test_results:
           path: *junit-results
       - store_artifacts:

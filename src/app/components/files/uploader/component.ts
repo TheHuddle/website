@@ -1,74 +1,72 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ApiService } from '@services/api.service'
+import { ApiService } from '@services/api';
 
 @Component({
   selector: 'huddle-file-uploader',
   templateUrl: './component.html',
-  styleUrls: ['./component.sass']
+  styleUrls: ['./component.sass'],
 })
 export class FileUploaderComponent {
   public form: FormGroup = new FormGroup({
     file: new FormControl('', [Validators.required]),
-  })
+  });
 
   @Input() fileViewer: any;
 
-  progress = 0
+  progress = 0;
 
-  public filepath: any
+  public filepath: any;
 
-  constructor(
-    private api: ApiService,
-  ) { }
+  constructor(private api: ApiService) {}
 
   select(event) {
-    console.log(event.target.files)
+    console.log(event.target.files);
 
     const files = event.target.files;
     if (!files || files.length < 1 || files.length > 1) return;
 
     const file = files[0];
-    this.form.controls['file'].setValue(file)
-    this.form.markAsDirty()
-    console.log(file)
+    this.form.controls['file'].setValue(file);
+    this.form.markAsDirty();
+    console.log(file);
     if (!file.type.match(/image\/*/)) return;
 
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    this.progress = 50
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    this.progress = 50;
     reader.onload = (x) => {
-      this.filepath = reader.result?.toString()
-      this.progress = 100
-    }
+      this.filepath = reader.result?.toString();
+      this.progress = 100;
+    };
   }
 
   submit(form) {
     if (!form.valid) return;
     form.disable();
-    const file = this.form.controls['file'].value
+    const file = this.form.controls['file'].value;
 
     this.api.upload(file).subscribe(
-      success => this.success(success),
-      failure => this.failure(),
-    )
+      (success) => this.success(success),
+      (failure) => this.failure()
+    );
   }
 
   cancel() {
-    this.filepath = null
-    this.form.reset()
+    this.filepath = null;
+    this.form.reset();
   }
 
   private success(x) {
-    this.cancel()
-    this.progress = 0
-    this.form.enable()
+    this.cancel();
+    this.progress = 0;
+    this.form.enable();
 
-    this.fileViewer.updateImages()
+    this.fileViewer.updateImages();
   }
 
   private failure() {
-    this.form.enable()
+    this.form.enable();
   }
 }

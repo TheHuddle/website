@@ -2,39 +2,48 @@
   <div id="profile">
     <mat-card id="user-details">
       <span class="row center">
-        <img mat-card-avatar src="{{avatar}}" *ngIf="loaded" class="avatar">
-        <span *ngIf="!loaded || upload === 'avatar'"
-          id="spinner-container"
-          ><mat-spinner [diameter]="100"></mat-spinner></span>
+        <img mat-card-avatar src="{{avatar}}" *ngIf="loaded" class="avatar" />
+        <span *ngIf="!loaded || upload === 'avatar'" id="spinner-container"
+          ><mat-spinner [diameter]="100"></mat-spinner
+        ></span>
       </span>
       <div id="actions-container">
-        <form [formGroup]="forms.password.group" (ngSubmit)="submit(forms.password)" id="password-change-form">
+        <form
+          [formGroup]="forms.password.group"
+          (ngSubmit)="submit(forms.password)"
+          id="password-change-form"
+        >
           <span class="row" *ngIf="editing === 'password'">
             <mat-form-field id="form-password">
               <mat-label>new password</mat-label>
-              <input type="password" matInput formControlName="password">
+              <input type="password" matInput formControlName="password" />
             </mat-form-field>
             <mat-form-field id="form-password">
               <mat-label>confirm password</mat-label>
-              <input type="password" matInput formControlName="confirm">
+              <input type="password" matInput formControlName="confirm" />
             </mat-form-field>
           </span>
           <mat-error
             *ngIf="forms.password.group.invalid && forms.password.group.hasError('passwordDoesNotMatch')"
-            >passwords do not match</mat-error>
+            >passwords do not match</mat-error
+          >
           <span *ngIf="editing === 'password'">
             <button
               mat-stroked-button
               color="warn"
               (click)="reset()"
               [disabled]="!!upload"
-              >Cancel</button>
+            >
+              Cancel
+            </button>
             <button
               mat-stroked-button
               type="submit"
               color="accent"
               [disabled]="forms.password.group.pristine || forms.password.group.invalid || !!upload"
-              >Change Password</button>
+            >
+              Change Password
+            </button>
           </span>
         </form>
         <span class="row centered" *ngIf="!editing">
@@ -43,63 +52,106 @@
             (click)="openDialog()"
             [disabled]="!loaded"
             color="accent"
-            >Change Avatar</button>
+          >
+            Change Avatar
+          </button>
           <button
             mat-button
             (click)="edit(forms.password)"
             [disabled]="!loaded"
             color="warn"
-            >Change Password</button>
-          </span>
+          >
+            Change Password
+          </button>
+        </span>
       </div>
       <mat-card-content>
-        <form [formGroup]="forms.profile.group" (ngSubmit)="submit(forms.profile)">
+        <form
+          [formGroup]="forms.profile.group"
+          (ngSubmit)="submit(forms.profile)"
+        >
           <span class="row">
             <mat-form-field id="form-first-name">
               <mat-label>first name</mat-label>
-              <input type="text" matInput placeholder="first name" formControlName="first_name">
+              <input
+                type="text"
+                matInput
+                placeholder="first name"
+                formControlName="first_name"
+              />
             </mat-form-field>
             <mat-form-field id="form-last-name">
               <mat-label>last name</mat-label>
-              <input type="text" matInput placeholder="last name" formControlName="last_name">
+              <input
+                type="text"
+                matInput
+                placeholder="last name"
+                formControlName="last_name"
+              />
             </mat-form-field>
           </span>
           <span class="row">
             <mat-form-field id="form-email">
               <mat-label>email address</mat-label>
-              <input type="text" matInput formControlName="email">
+              <input type="text" matInput formControlName="email" />
             </mat-form-field>
           </span>
           <span class="row">
             <mat-form-field id="form-discord-handle">
               <mat-label>discord handle</mat-label>
-              <input type="text" matInput placeholder="@tuxruleslinux" formControlName="discord_handle">
-            <mat-error
-              *ngIf="forms.profile.group.controls['discord_handle'].hasError('globalHandle')"
-              >cannot be a global handle</mat-error>
+              <input
+                type="text"
+                matInput
+                placeholder="@tuxruleslinux"
+                formControlName="discord_handle"
+              />
+              <mat-error
+                *ngIf="forms.profile.group.controls['discord_handle'].hasError('globalHandle')"
+                >cannot be a global handle</mat-error
+              >
             </mat-form-field>
             <mat-form-field id="form-pronouns">
               <mat-label>pronouns</mat-label>
-              <input type="text" matInput placeholder="be yourself!" formControlName="pronouns">
+              <input
+                type="text"
+                matInput
+                placeholder="be yourself!"
+                formControlName="pronouns"
+              />
             </mat-form-field>
           </span>
           <span class="row">
             <mat-form-field id="form-website">
               <mat-label>website</mat-label>
-              <input type="text" matInput placeholder="e.g. github.com/<me>" formControlName="website">
+              <input
+                type="text"
+                matInput
+                placeholder="e.g. github.com/<me>"
+                formControlName="website"
+              />
             </mat-form-field>
-            <mat-checkbox type="text" formControlName="in_logan">in logan</mat-checkbox>
+            <mat-checkbox type="text" formControlName="in_logan"
+              >in logan</mat-checkbox
+            >
           </span>
-          <span class="row" id="bio-row" >
+          <span class="row" id="bio-row">
             <mat-form-field *ngIf="editing === 'profile'">
               <mat-label>bio</mat-label>
-              <textarea rows="7" matInput appearance="fill" placeholder="bio" formControlName="bio">
+              <textarea
+                rows="7"
+                matInput
+                appearance="fill"
+                placeholder="bio"
+                formControlName="bio"
+              >
               </textarea>
             </mat-form-field>
             <h4>{{ forms.profile.group.enabled ? "bio preview" : "bio"}}</h4>
-            <hr *ngIf="forms.profile.group.enabled">
-            <div [innerHTML]="forms.profile.group.controls['bio'].value || '<em>nothing to see :c</em>'"></div>
-            <hr>
+            <hr *ngIf="forms.profile.group.enabled" />
+            <div
+              [innerHTML]="forms.profile.group.controls['bio'].value || '<em>nothing to see :c</em>'"
+            ></div>
+            <hr />
           </span>
           <span class="row">
             <button
@@ -107,28 +159,45 @@
               *ngIf="!editing"
               (click)="edit(forms.profile)"
               [disabled]="!loaded"
-              >Edit Profile</button>
+            >
+              Edit Profile
+            </button>
             <button
               mat-stroked-button
               *ngIf="editing"
               color="warn"
               (click)="reset()"
               [disabled]="!!upload"
-              >{{ forms.profile.group.dirty ? 'Discard Changes' : 'Cancel' }}</button>
+            >
+              {{ forms.profile.group.dirty ? 'Discard Changes' : 'Cancel' }}
+            </button>
             <button
               mat-stroked-button
               *ngIf="editing"
               type="submit"
               color="accent"
               [disabled]="forms.profile.group.pristine || forms.profile.group.invalid || !!upload"
-              >Save Changes</button>
+            >
+              Save Changes
+            </button>
           </span>
         </form>
       </mat-card-content>
       <mat-card-footer>
-        <mat-progress-bar *ngIf="!editing && !upload" value="100" color="primary"></mat-progress-bar>
-        <mat-progress-bar *ngIf="editing" value="0" color="primary"></mat-progress-bar>
-        <mat-progress-bar *ngIf="!!upload" mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar
+          *ngIf="!editing && !upload"
+          value="100"
+          color="primary"
+        ></mat-progress-bar>
+        <mat-progress-bar
+          *ngIf="editing"
+          value="0"
+          color="primary"
+        ></mat-progress-bar>
+        <mat-progress-bar
+          *ngIf="!!upload"
+          mode="indeterminate"
+        ></mat-progress-bar>
       </mat-card-footer>
     </mat-card>
   </div>
