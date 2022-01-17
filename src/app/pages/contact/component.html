@@ -1,16 +1,12 @@
-<div class='page-container'>
-  <div id='contact-us'>
+<div class="page-container">
+  <div id="contact-us">
     <h1>Contact Us</h1>
     <div class="card-container">
-      <contact-card
-          [card]="communityCard"
-          ></contact-card>
+      <contact-card [card]="communityCard"></contact-card>
     </div>
-    <div class='card-container'>
+    <div class="card-container">
       <div *ngFor="let card of cards">
-        <contact-card
-            [card]="card"
-            ></contact-card>
+        <contact-card [card]="card"></contact-card>
       </div>
     </div>
   </div>

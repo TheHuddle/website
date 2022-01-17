@@ -8,9 +8,8 @@ describe('CodeOfConductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CodeOfConductComponent ]
-    })
-    .compileComponents();
+      declarations: [CodeOfConductComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,5 @@ describe('CodeOfConductComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(component).toBeTruthy());
 });

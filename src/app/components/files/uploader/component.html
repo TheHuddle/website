@@ -1,11 +1,11 @@
 <form [formGroup]="form" id="upload-form">
   <input
-      #fileInput
-      type="file"
-      hidden 
-      (change)="select($event)"
-      accept="image/*"
-      >
+    #fileInput
+    type="file"
+    hidden
+    (change)="select($event)"
+    accept="image/*"
+  />
 </form>
 
 <div class="mobile-hide">
@@ -16,20 +16,32 @@
         [disabled]="form.disabled || form.pristine"
         color="warn"
         (click)="cancel()"
-        >Cancel</button>
+      >
+        Cancel
+      </button>
       <button
         mat-raised-button
         [disabled]="form.disabled || form.invalid"
         color="accent"
         (click)="submit(form)"
-        >Upload</button>
+      >
+        Upload
+      </button>
     </mat-drawer>
     <mat-drawer-content id="upload-container">
       <div>
-        <img *ngIf="filepath" src="{{filepath}}">
-        <button mat-flat-button *ngIf="!filepath" (click)="fileInput.click()">upload a new file</button>
-        <mat-progress-bar *ngIf="form.enabled" [value]="progress"></mat-progress-bar>
-        <mat-progress-bar *ngIf="form.disabled" mode="indeterminate"></mat-progress-bar>
+        <img *ngIf="filepath" src="{{filepath}}" />
+        <button mat-flat-button *ngIf="!filepath" (click)="fileInput.click()">
+          upload a new file
+        </button>
+        <mat-progress-bar
+          *ngIf="form.enabled"
+          [value]="progress"
+        ></mat-progress-bar>
+        <mat-progress-bar
+          *ngIf="form.disabled"
+          mode="indeterminate"
+        ></mat-progress-bar>
       </div>
     </mat-drawer-content>
   </mat-drawer-container>
@@ -42,18 +54,30 @@
       [disabled]="form.disabled || form.pristine"
       color="warn"
       (click)="cancel()"
-      >Cancel</button>
+    >
+      Cancel
+    </button>
     <button
       mat-raised-button
       [disabled]="form.disabled || form.invalid"
       color="accent"
       (click)="submit(form)"
-      >Upload</button>
+    >
+      Upload
+    </button>
   </div>
   <div id="preview">
-    <img *ngIf="filepath" src="{{filepath}}">
-    <button mat-flat-button *ngIf="!filepath" (click)="fileInput.click()">upload a new file</button>
-    <mat-progress-bar *ngIf="form.enabled" [value]="progress"></mat-progress-bar>
-    <mat-progress-bar *ngIf="form.disabled" mode="indeterminate"></mat-progress-bar>
+    <img *ngIf="filepath" src="{{filepath}}" />
+    <button mat-flat-button *ngIf="!filepath" (click)="fileInput.click()">
+      upload a new file
+    </button>
+    <mat-progress-bar
+      *ngIf="form.enabled"
+      [value]="progress"
+    ></mat-progress-bar>
+    <mat-progress-bar
+      *ngIf="form.disabled"
+      mode="indeterminate"
+    ></mat-progress-bar>
   </div>
 </div>

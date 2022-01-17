@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AssetsService {
-
-  constructor() { }
+  constructor() {}
 
   get(asset: any): string {
-    if ( asset === null ) {
+    if (asset === null) {
       // @TODO insert default asset for null asset retrieval
       return '';
     } else if (typeof asset === 'string') {

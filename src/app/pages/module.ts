@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { ReactiveFormsModule } from '@angular/forms'
-import { RouterModule } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card'
-import { MatCheckboxModule } from '@angular/material/checkbox'
-import { MatIconModule } from '@angular/material/icon'
-import { MatInputModule } from '@angular/material/input'
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatProgressBarModule } from '@angular/material/progress-bar'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const MaterialImports = [
   MatButtonModule,
@@ -21,23 +21,23 @@ const MaterialImports = [
   MatDialogModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
-]
+];
 
-import { ButtonsModule } from '@components/buttons/module'
-import { FilesModule } from '@components/files/module'
+import { ButtonsModule } from '@components/buttons/module';
+import { FilesModule } from '@components/files/module';
 
-import { AboutComponent } from './about/component'
-import { CodeOfConductComponent } from './code-of-conduct/component'
-import { ContactCardComponent } from './contact/card/component'
-import { ContactComponent } from './contact/component'
-import { EventCardComponent } from './events/card/component'
-import { EventDetailComponent } from './events/detail/component'
-import { EventsComponent } from './events/component'
-import { FirstLoginComponent } from './first-login/component'
-import { HomeComponent } from './home/component'
-import { LoginComponent } from './login/component'
-import { PeopleComponent } from './people/component'
-import { ProfileComponent } from './profile/component'
+import { AboutComponent } from './about/component';
+import { CodeOfConductComponent } from './code-of-conduct/component';
+import { ContactCardComponent } from './contact/card/component';
+import { ContactComponent } from './contact/component';
+import { EventCardComponent } from './events/card/component';
+import { EventDetailComponent } from './events/detail/component';
+import { EventsComponent } from './events/component';
+import { FirstLoginComponent } from './first-login/component';
+import { HomeComponent } from './home/component';
+import { LoginComponent } from './login/component';
+import { PeopleComponent } from './people/component';
+import { ProfileComponent } from './profile/component';
 
 const DeclarationsAndExports = [
   AboutComponent,
@@ -51,7 +51,7 @@ const DeclarationsAndExports = [
   LoginComponent,
   PeopleComponent,
   ProfileComponent,
-]
+];
 
 @NgModule({
   declarations: [
@@ -68,8 +68,6 @@ const DeclarationsAndExports = [
     ButtonsModule,
     FilesModule,
   ],
-  exports: [
-    ...DeclarationsAndExports,
-  ]
+  exports: [...DeclarationsAndExports],
 })
-export class PagesModule { }
+export class PagesModule {}
