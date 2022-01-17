@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ApiService } from '@services/api.service'
@@ -12,6 +12,8 @@ export class FileUploaderComponent {
   public form: FormGroup = new FormGroup({
     file: new FormControl('', [Validators.required]),
   })
+
+  @Input() fileViewer: any;
 
   progress = 0
 
@@ -59,10 +61,11 @@ export class FileUploaderComponent {
   }
 
   private success(x) {
-    console.log(x)
     this.cancel()
     this.progress = 0
     this.form.enable()
+
+    this.fileViewer.updateImages()
   }
 
   private failure() {

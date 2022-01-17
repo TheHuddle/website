@@ -24,16 +24,18 @@ export class FileViewerComponent implements OnInit {
     this.updateImages();
   }
 
+  private makeImageComponentStruct(image) {
+    return {
+      id: image.id,
+      src: this.assets.get(image.id)
+    }
+  }
+
   updateImages() {
     const url = 'files?filter[uploaded_by][_eq]=$CURRENT_USER'
     this.api.get(url).subscribe(
       result => {
-        this.images = result.data.map(image => {
-          return {
-            id: image.id,
-            src: this.assets.get(image.id),
-          }
-        }) 
+        this.images = result.data.map(image => this.makeImageComponentStruct(image)) 
       }
     );
   }

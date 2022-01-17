@@ -1,12 +1,12 @@
 <div class="page-container">
   <mat-tab-group>
     <mat-tab label="Select">
-      <huddle-file-viewer
+      <huddle-file-viewer #fileViewer
         (selectedFile)="selectFile($event)"
         ></huddle-file-viewer>
     </mat-tab>
     <mat-tab label="Upload">
-      <huddle-file-uploader></huddle-file-uploader>
+      <huddle-file-uploader [fileViewer]="fileViewer"></huddle-file-uploader>
     </mat-tab>
   </mat-tab-group>
 </div>
