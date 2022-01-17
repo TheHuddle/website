@@ -10,8 +10,7 @@ export class AssetsService {
 
   get(asset: any): string {
     if (asset === null) {
-      // @TODO insert default asset for null asset retrieval
-      return '';
+      return `${environment.apiBase}/assets/default.png`;
     } else if (typeof asset === 'string') {
       return `${environment.apiBase}/assets/${asset}`;
     } else {
