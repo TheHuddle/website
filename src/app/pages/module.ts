@@ -38,6 +38,9 @@ import { HomeComponent } from './home/component';
 import { LoginComponent } from './login/component';
 import { PeopleComponent } from './people/component';
 import { ProfileComponent } from './profile/component';
+import { TaskCardComponent } from './tasks/card/component';
+import { TaskLegendComponent } from './tasks/legend/component';
+import { TasksComponent } from './tasks/component';
 
 const DeclarationsAndExports = [
   AboutComponent,
@@ -51,6 +54,9 @@ const DeclarationsAndExports = [
   LoginComponent,
   PeopleComponent,
   ProfileComponent,
+  TaskCardComponent,
+  TaskLegendComponent,
+  TasksComponent,
 ];
 
 @NgModule({

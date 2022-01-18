@@ -1,0 +1,47 @@
+<mat-card class="task-card" *ngIf="task">
+  <mat-card-content>
+    <div id="content">
+      <div id="title">{{task.descriptionShort}}</div>
+      <div id="description">
+        <span [innerHTML]="task.description"></span>
+        <div id="event" *ngIf="task.event" class="italic">
+          (only during <span class="bold">{{ task.event }}</span>)
+        </div>
+        <div id="hidden" *ngIf="task.hidden" class="italic">
+          (shhh! this is a <span class="bold">secret event</span>)
+        </div>
+      </div>
+      <div
+        id="points"
+        [ngClass]="{
+          'boosted': task.completedOn && task.earnedPoints > task.value,
+          'reduced': task.completedOn && task.earnedPoints < task.value
+        }"
+      >
+        {{ task.earnedPoints }} / {{ task.value }}
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-progress-bar
+      *ngIf="task.completedOn && !task.hidden"
+      value="100"
+      color="accent"
+    ></mat-progress-bar>
+    <mat-progress-bar
+      *ngIf="task.completedOn && task.hidden"
+      value="100"
+      color="primary"
+    ></mat-progress-bar>
+    <mat-progress-bar
+      *ngIf="!task.completedOn && task.active"
+      value="0"
+      color="accent"
+    ></mat-progress-bar>
+    <mat-progress-bar
+      *ngIf="!task.completedOn && !task.active"
+      value="0"
+      color="warn"
+    ></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
