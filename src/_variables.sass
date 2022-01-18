@@ -1,0 +1,33 @@
+@use '@angular/material' as mat
+@include mat.core()
+@import "@angular/material/theming"
+
+$default-primary: mat-palette($mat-deep-purple, 700)
+$default-accent:  mat-palette($mat-teal, 400)
+$default-warn:    mat-palette($mat-red, 600)
+
+$light-primary: mat-palette($mat-deep-purple, 300)
+$light-accent:  mat-palette($mat-teal, 300)
+$light-warn:    mat-palette($mat-red, 600)
+
+$dark-primary: mat-palette($mat-deep-purple, 900)
+$dark-accent:  mat-palette($mat-teal, 600)
+$dark-warn:    mat-palette($mat-red, 800)
+
+$primary:       mat.get-color-from-palette($default-primary, default)
+$primary-light: mat.get-color-from-palette($light-primary, default)
+$primary-dark:  mat.get-color-from-palette($dark-primary, default)
+
+$accent:       mat.get-color-from-palette($default-accent, default)
+$accent-light: mat.get-color-from-palette($light-accent, default)
+$accent-dark:  mat.get-color-from-palette($dark-accent, default)
+
+$warn:       mat.get-color-from-palette($default-warn, default)
+$warn-light: mat.get-color-from-palette($light-warn, default)
+$warn-dark:  mat.get-color-from-palette($dark-warn, default)
+
+$background: #303030
+
+$gray-1: #2a2a2a
+$gray-2: #0d0d0d
+$gray-3: #3d3d3d

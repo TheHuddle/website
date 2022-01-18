@@ -8,6 +8,7 @@ import { LoginComponent } from './login/component';
 import { FirstLoginComponent } from './first-login/component';
 import { PeopleComponent } from './people/component';
 import { ProfileComponent } from './profile/component';
+import { TasksComponent } from './tasks/component';
 
 // note: ordering of pages MATTERS here (they are listed in the menu in this same order)
 export const Pages = [
@@ -80,5 +81,12 @@ export const Pages = [
     title: 'Community',
     icon: null,
     component: PeopleComponent,
+  },
+  {
+    route: '/tasks',
+    public: false,
+    title: 'Tasks',
+    icon: 'playlist_add_check',
+    component: TasksComponent,
   },
 ];

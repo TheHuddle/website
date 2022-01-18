@@ -1,0 +1,49 @@
+@use 'variables' as huddle
+
+.task-card
+  text-align: center
+  margin: 4px
+
+  @media only screen and (max-width: 600px)
+    margin-bottom: 8px
+
+#content
+  width: 100%
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+
+#title
+  width: 100px
+  font-weight: bold
+  @media only screen and (min-width: 800px)
+    width: 150px
+  @media only screen and (max-width: 600px)
+    width: calc(100% - 8px)
+    margin-bottom: 8px
+
+#description
+  width: calc(100% - 64px - 100px - 16px)
+  @media only screen and (min-width: 801px)
+    width: calc(100% - 64px - 150px - 16px)
+  @media only screen and (max-width: 600px)
+    width: calc(100% - 8px)
+    margin-bottom: 8px
+
+#points
+  width: 64px
+  @media only screen and (max-width: 600px)
+    width: calc(100% - 8px)
+
+#event, #hidden
+  font-size: 10px
+
+
+.boosted
+  color: huddle.$accent-light
+
+.reduced
+  color: huddle.$warn-light
