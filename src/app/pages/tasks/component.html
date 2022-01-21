@@ -1,7 +1,10 @@
 <div class="page-container" style="user-select: none">
   <h2>Tasks</h2>
   <h3 *ngIf="score">All Time Score: {{ score }}</h3>
-  <huddle-task-legend [taskTypeScores]="taskScores" (selectedTaskType)="setTaskType($event)"></huddle-task-legend>
+  <huddle-task-legend
+    [taskTypeScores]="taskScores"
+    (selectedTaskType)="setTaskType($event)"
+  ></huddle-task-legend>
   <mat-spinner style="margin: 0 auto" *ngIf="tasks.length < 1"></mat-spinner>
   <div *ngFor="let task of tasks" class="task-container">
     <huddle-task-card [task]="task"></huddle-task-card>

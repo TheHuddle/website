@@ -15,9 +15,15 @@ export class TasksComponent implements OnInit {
   tasks: any[] = [];
   completedTasks: any[] = [];
   taskTypeFilters: any = {
-    "Completed": (task : any) : boolean => { return Boolean(task.completedOn); },
-    "Available": (task : any) : boolean => { return Boolean(task.active); },
-    "Unavailable": (task : any) : boolean => { return !Boolean(task.active); }
+    Completed: (task: any): boolean => {
+      return Boolean(task.completedOn);
+    },
+    Available: (task: any): boolean => {
+      return Boolean(task.active);
+    },
+    Unavailable: (task: any): boolean => {
+      return !Boolean(task.active);
+    },
   };
   taskScores: any[] = [];
 
@@ -65,26 +71,29 @@ export class TasksComponent implements OnInit {
     }
     `;
 
-    this.api
-      .query(query)
-      .subscribe((response) => {
-        this.setTaskData(response.data);
+    this.api.query(query).subscribe((response) => {
+      this.setTaskData(response.data);
 
-        this.taskScores = Object.keys(this.taskTypeFilters).map((function(obj : any) {
-          function getTask(taskType : string) {
+      this.taskScores = Object.keys(this.taskTypeFilters).map(
+        (function (obj: any) {
+          function getTask(taskType: string) {
             const filtered = obj.filterByTaskType(taskType);
             return {
               descriptionShort: taskType,
-              earnedPoints: filtered.reduce((acc, x) => x.earnedPoints + acc, 0),
+              earnedPoints: filtered.reduce(
+                (acc, x) => x.earnedPoints + acc,
+                0
+              ),
               value: filtered.reduce((acc, x) => x.value + acc, 0),
-            }
+            };
           }
           return getTask;
-        })(this));
-      });
+        })(this)
+      );
+    });
   }
 
-  private filterByTaskType(taskType : string) {
+  private filterByTaskType(taskType: string) {
     return this.initialTasks.filter(this.taskTypeFilters[taskType]);
   }
 
@@ -139,24 +148,25 @@ export class TasksComponent implements OnInit {
   }
 
   public setTaskType(taskType: any) {
-    this.tasks = this.filterByTaskType(taskType.descriptionShort)
-                     .sort(
-          (taskA : any, taskB : any) : number => { 
-            // Sort first by earned points
-            let ret = taskB.earnedPoints - taskA.earnedPoints;
-            if (ret == 0) {
-              // Then by total possble points
-              ret = taskB.value - taskA.value;
-            }
-            return ret;
-          });
+    this.tasks = this.filterByTaskType(taskType.descriptionShort).sort(
+      (taskA: any, taskB: any): number => {
+        // Sort first by earned points
+        let ret = taskB.earnedPoints - taskA.earnedPoints;
+        if (ret == 0) {
+          // Then by total possble points
+          ret = taskB.value - taskA.value;
+        }
+        return ret;
+      }
+    );
 
     if (this.tasks.length == 0) {
-      this.tasks = [{
-          "active": false,
-          "descriptionShort": "No Results"
-        }
-      ]
+      this.tasks = [
+        {
+          active: false,
+          descriptionShort: 'No Results',
+        },
+      ];
     }
   }
 }
