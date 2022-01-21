@@ -36,6 +36,7 @@ jobs:
               && git config --global user.email circleci@codehuddle.org >/dev/null 2>&1 \
               && git config --global user.name circleci >/dev/null 2>&1 \
               && git rebase origin/main >/dev/null 2>&1 \
+              && echo "success!" \
               || echo "failed!\nYou must rebase manually"
       - node/install-packages:
           pkg-manager: npm
