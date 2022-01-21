@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import * as moment from 'moment';
 
@@ -7,7 +7,7 @@ import { ApiService } from '@services/api';
 @Component({
   selector: 'app-tasks',
   templateUrl: './component.html',
-  styleUrls: ['./component.sass']
+  styleUrls: ['./component.sass'],
 })
 export class TasksComponent implements OnInit {
   score = 0;
