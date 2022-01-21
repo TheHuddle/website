@@ -3,13 +3,14 @@
 #####################################################################
 
 /.circleci/       @TheHuddle/admin
+/.husky/          @TheHuddle/admin
+/docker/          @TheHuddle/admin
+
 /.prettierc.json  @TheHuddle/admin
 /Makefile         @TheHuddle/admin
 /bin              @TheHuddle/admin
 /docs/CODEOWNERS  @TheHuddle/admin
 /package.json     @TheHuddle/admin
 /ts*              @TheHuddle/admin
-/docker           @TheHuddle/admin
-/.husky           @TheHuddle/admin
 
 #####################################################################

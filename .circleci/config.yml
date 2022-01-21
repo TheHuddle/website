@@ -6,6 +6,19 @@ aliases:
     ./dist/junit
   - &deployment-context
     cloud.codehuddle.org
+  - &rebase
+    run:
+      name: Rebasing to `main`
+      command: |
+        echo 'attempting to rebase to main...' \
+          && git fetch origin main \
+          && git config --global user.email circleci@codehuddle.org \
+          && git config --global user.name circleci \
+          && git rebase origin/main \
+          && echo "successfully rebased to main!" || {
+            echo -e "FAILED\nplease rebase manually"
+            exit 1
+          }
 
 
 orbs:
@@ -21,28 +34,18 @@ executors:
       - image: cimg/node:14.15-browsers
     resource_class: medium
 
-
 jobs:
   test:
     executor: test-runner
     steps:
-      - browser-tools/install-chrome
       - checkout
-      - run:
-          name: Rebasing to `main`
-          command: |
-            echo 'attempting to rebase to main...' \
-              && git fetch origin main >/dev/null 2>&1 \
-              && git config --global user.email circleci@codehuddle.org >/dev/null 2>&1 \
-              && git config --global user.name circleci >/dev/null 2>&1 \
-              && git rebase origin/main >/dev/null 2>&1 \
-              && echo "success!" \
-              || echo "failed!\nYou must rebase manually"
+      - *rebase
       - node/install-packages:
           pkg-manager: npm
       - run:
           name: check format
           command: npm run ci:check-format
+      - browser-tools/install-chrome
       - run:
           name: run tests
           command: npm run ci:test
@@ -50,6 +53,13 @@ jobs:
           path: *junit-results
       - store_artifacts:
           path: *junit-results
+
+  build:
+    machine: true
+    steps:
+      - checkout
+      - *rebase
+      - run: docker build -f ./docker/Dockerfile .
 
   publish:
     executor: aws-cli/default
@@ -63,6 +73,12 @@ workflows:
   build:
     jobs:
       - test
+
+      - build:
+          requires: [test]
+          filters:
+            branches:
+              ignore: main
 
       - aws-ecr/build-and-push-image:
           requires: [test]
