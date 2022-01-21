@@ -34,7 +34,8 @@ export class AuthService {
   }
 
   refresh() {
-    if (this.loggedIn()) {
+    if (this.loggedIn() && this.checkRefreshNow()) {
+      localStorage.setItem('0d03fe6f-d3b9-4fa8-b73e-422863820f95', '1');
       this.http
         .post(`${environment.apiBase}/auth/refresh`, {
           refresh_token: localStorage.getItem(
@@ -55,6 +56,7 @@ export class AuthService {
       'f89490db-098f-427b-b5eb-7a856f1774b1',
       '41835236-a088-4455-bc90-cb781d8404f4',
       '47be8bb8-ac4e-4d0c-9e3c-53dd4dcd0262',
+      '0d03fe6f-d3b9-4fa8-b73e-422863820f95',
     ].map((x) => localStorage.removeItem(x));
   }
 
@@ -71,6 +73,7 @@ export class AuthService {
       '47be8bb8-ac4e-4d0c-9e3c-53dd4dcd0262',
       moment().add(result.expires, 'millisecond').format()
     );
+    localStorage.removeItem('41835236-a088-4455-bc90-cb781d8404f4');
   }
 
   getHeaders() {
@@ -86,5 +89,17 @@ export class AuthService {
     }
 
     return headers;
+  }
+
+  checkRefreshNow() {
+    if (localStorage.getItem('0d03fe6f-d3b9-4fa8-b73e-422863820f95')) {
+      return false;
+    }
+
+    const expiration = moment(
+      localStorage.getItem('47be8bb8-ac4e-4d0c-9e3c-53dd4dcd0262')
+    );
+
+    return moment().diff(expiration, 'seconds') > 60;
   }
 }
