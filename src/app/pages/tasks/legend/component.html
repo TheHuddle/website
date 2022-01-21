@@ -1,5 +1,5 @@
 <div id="legend-container">
-  <div *ngFor="let task of tasks" class="card-container">
-    <huddle-task-card [task]="task"></huddle-task-card>
+  <div *ngFor="let task of tasks; let i = index;" class="card-container"  [ngClass]="{'highlight': selected === i}">
+    <huddle-task-card [task]="task" (click)="setSelector(i)"></huddle-task-card>
   </div>
 </div>
