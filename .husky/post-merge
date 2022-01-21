@@ -1,0 +1,13 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+CHANGED=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
+
+INSTALL=0
+echo $CHANGED | grep 'package.json' && INSTALL=1
+echo $CHANGED | grep 'package-lock.json' && INSTALL=1
+
+[[ $INSTALL -eq 1 ]] && {
+	echo 'Detected changes to npm packages! Installing...'
+	npm install
+}
