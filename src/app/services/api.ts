@@ -55,7 +55,6 @@ export class ApiService {
 
     const options = { headers: headers };
 
-    console.log(options);
     const formData = new FormData();
     formData.append('file', file);
 

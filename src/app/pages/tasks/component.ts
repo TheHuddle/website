@@ -79,11 +79,6 @@ export class TasksComponent implements OnInit {
       if (task.event) {
         const start = moment(task.event.start);
         const deadline = moment(task.event.deadline);
-        console.log({
-          today: today.toString(),
-          start: start.toString(),
-          deadline: deadline.toString(),
-        });
         if (today < start || today >= deadline) {
           return;
         }
@@ -111,6 +106,5 @@ export class TasksComponent implements OnInit {
     });
 
     this.tasks.sort((a, b) => b.id - a.id);
-    console.log(this.tasks);
   }
 }
