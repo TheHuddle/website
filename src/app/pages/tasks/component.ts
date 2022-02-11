@@ -73,12 +73,17 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  private setTaskData(data) {
+  setTaskData(data) {
     const today = moment();
     data.Task.map((task) => {
       if (task.event) {
         const start = moment(task.event.start);
         const deadline = moment(task.event.deadline);
+        console.log({
+          today: today.toString(),
+          start: start.toString(),
+          deadline: deadline.toString(),
+        });
         if (today < start || today >= deadline) {
           return;
         }
