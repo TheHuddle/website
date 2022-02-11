@@ -22,15 +22,12 @@ export class FileUploaderComponent {
   constructor(private api: ApiService) {}
 
   select(event) {
-    console.log(event.target.files);
-
     const files = event.target.files;
     if (!files || files.length < 1 || files.length > 1) return;
 
     const file = files[0];
     this.form.controls['file'].setValue(file);
     this.form.markAsDirty();
-    console.log(file);
     if (!file.type.match(/image\/*/)) return;
 
     const reader = new FileReader();

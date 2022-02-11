@@ -10,7 +10,6 @@ import { ApiService } from '@services/api';
   styleUrls: ['./component.sass'],
 })
 export class TasksComponent implements OnInit {
-  score = 0;
   tasks: any[] = [];
   completedTasks: any[] = [];
 
@@ -74,16 +73,14 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  private setTaskData(data) {
+  setTaskData(data) {
     const today = moment();
     data.Task.map((task) => {
-      task.active = true;
-
       if (task.event) {
-        task.start = moment(task.event.start);
-        task.deadline = moment(task.event.deadline);
-        if (today < task.start || today >= task.deadline) {
-          task.active = false;
+        const start = moment(task.event.start);
+        const deadline = moment(task.event.deadline);
+        if (today < start || today >= deadline) {
+          return;
         }
         task.event = task.event.title;
       }
@@ -98,7 +95,6 @@ export class TasksComponent implements OnInit {
         } else {
           task.multiplier = 'complete';
         }
-        this.score += task.earnedPoints;
       }
 
       task.descriptionShort = task.description_short;
@@ -108,7 +104,7 @@ export class TasksComponent implements OnInit {
 
       this.tasks.push({ ...task });
     });
+
     this.tasks.sort((a, b) => b.id - a.id);
-    console.log(this.tasks);
   }
 }

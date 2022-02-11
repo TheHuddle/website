@@ -34,14 +34,9 @@
       color="primary"
     ></mat-progress-bar>
     <mat-progress-bar
-      *ngIf="!task.completedOn && task.active"
+      *ngIf="!task.completedOn"
       value="0"
       color="accent"
-    ></mat-progress-bar>
-    <mat-progress-bar
-      *ngIf="!task.completedOn && !task.active"
-      value="0"
-      color="warn"
     ></mat-progress-bar>
   </mat-card-footer>
 </mat-card>

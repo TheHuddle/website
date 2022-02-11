@@ -100,11 +100,6 @@ export class ProfileComponent implements OnInit {
 
     form.group.enable();
     this.editing = form.name;
-    console.log({
-      editing: this.editing,
-      upload: this.upload,
-      profile: this.forms.profile.group.valid,
-    });
   }
 
   openDialog() {
