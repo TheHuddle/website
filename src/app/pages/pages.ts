@@ -5,7 +5,7 @@ import { EventsComponent } from './events/component';
 import { EventDetailComponent } from './events/detail/component';
 import { ContactComponent } from './contact/component';
 import { LoginComponent } from './login/component';
-import { FirstLoginComponent } from './first-login/component';
+import { RegistrationComponent } from './register/component';
 import { PeopleComponent } from './people/component';
 import { ProfileComponent } from './profile/component';
 import { TasksComponent } from './tasks/component';
@@ -69,11 +69,11 @@ export const Pages = [
     component: LoginComponent,
   },
   {
-    route: '/login/first',
-    public: false,
+    route: '/register',
+    public: true,
     title: null,
     icon: null,
-    component: FirstLoginComponent,
+    component: RegistrationComponent,
   },
   {
     route: '/people/:id',

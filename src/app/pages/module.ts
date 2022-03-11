@@ -33,11 +33,11 @@ import { ContactComponent } from './contact/component';
 import { EventCardComponent } from './events/card/component';
 import { EventDetailComponent } from './events/detail/component';
 import { EventsComponent } from './events/component';
-import { FirstLoginComponent } from './first-login/component';
 import { HomeComponent } from './home/component';
 import { LoginComponent } from './login/component';
 import { PeopleComponent } from './people/component';
 import { ProfileComponent } from './profile/component';
+import { RegistrationComponent } from './register/component';
 import { TaskCardComponent } from './tasks/card/component';
 import { TasksComponent } from './tasks/component';
 
@@ -48,22 +48,17 @@ const DeclarationsAndExports = [
   EventCardComponent,
   EventDetailComponent,
   EventsComponent,
-  FirstLoginComponent,
   HomeComponent,
   LoginComponent,
   PeopleComponent,
   ProfileComponent,
+  RegistrationComponent,
   TaskCardComponent,
   TasksComponent,
 ];
 
 @NgModule({
-  declarations: [
-    ContactCardComponent,
-    ...DeclarationsAndExports,
-    PeopleComponent,
-    FirstLoginComponent,
-  ],
+  declarations: [ContactCardComponent, ...DeclarationsAndExports],
   imports: [
     CommonModule,
     ReactiveFormsModule,

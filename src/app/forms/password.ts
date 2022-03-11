@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 import { ApiService } from '@services/api';
+import { HuddleValidators } from '@forms/validators';
 
 export class PasswordForm {
   public readonly name = 'password';
@@ -13,27 +14,16 @@ export class PasswordForm {
         Validators.required,
         Validators.minLength(10),
       ]),
-      confirm: new FormControl('', [
+      passwordconfirm: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
       ]),
       isPassword: new FormControl(true),
     },
-    this.validatePasswordsEqual
+    HuddleValidators.passwordsMatch
   );
 
   constructor(private api: ApiService) {}
-
-  private validatePasswordsEqual(group) {
-    const password = group.get('password')?.value;
-    const confirm = group.get('confirm')?.value;
-
-    if (!password || !confirm || password === confirm) {
-      return null;
-    } else {
-      return { passwordDoesNotMatch: true };
-    }
-  }
 
   submit() {
     if (!this.group.valid) return of({});

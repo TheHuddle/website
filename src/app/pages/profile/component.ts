@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
       user = data.users_me;
     }
     this.avatar = this.assets.get(user.avatar);
-    this.initial = { ...user, password: '', confirm: '' };
+    this.initial = { ...user, password: '', passwordconfirm: '' };
 
     this.reset();
     this.loaded = true;
