@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 import { ApiService } from '@services/api';
+import { HuddleValidators } from '@forms/validators';
 
 export class ProfileForm {
   public readonly name = 'profile';
@@ -11,7 +12,7 @@ export class ProfileForm {
     bio: new FormControl(''),
     discord_handle: new FormControl('', [
       Validators.required,
-      this.validateDiscordHandle,
+      HuddleValidators.discord,
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     first_name: new FormControl('', [Validators.required]),
@@ -22,20 +23,6 @@ export class ProfileForm {
   });
 
   constructor(private api: ApiService) {}
-
-  private validateDiscordHandle(control) {
-    const handle = control?.value;
-
-    if (handle[0] !== '@') {
-      control.setValue(`@${handle}`);
-    }
-
-    if (/#/.test(handle)) {
-      return { globalHandle: true };
-    }
-
-    return null;
-  }
 
   submit(): Observable<any> {
     if (!this.group.valid) return of({});

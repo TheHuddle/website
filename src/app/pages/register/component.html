@@ -1,0 +1,141 @@
+<div class="page-container">
+  <h2>Registration Form</h2>
+  <div id="registration">
+    <mat-card id="registration-details">
+      <mat-card-content>
+        <form [formGroup]="form.group" (ngSubmit)="submit(form)">
+          <span class="row">
+            <mat-form-field id="form-first-name">
+              <mat-label>first name</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="first name"
+                formControlName="first_name"
+              />
+            </mat-form-field>
+            <mat-form-field id="form-last-name">
+              <mat-label>last name</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="last name"
+                formControlName="last_name"
+              />
+            </mat-form-field>
+          </span>
+          <span class="row">
+            <mat-form-field id="form-email">
+              <mat-label>email address</mat-label>
+              <input type="text" matInput formControlName="email" />
+            </mat-form-field>
+          </span>
+          <span class="row">
+            <mat-form-field class="form-password">
+              <mat-label>password</mat-label>
+              <input type="password" matInput formControlName="password" />
+            </mat-form-field>
+            <mat-form-field class="form-password">
+              <mat-label>confirm password</mat-label>
+              <input
+                type="password"
+                matInput
+                formControlName="passwordconfirm"
+              />
+            </mat-form-field>
+          </span>
+          <span class="row">
+            <mat-error
+              *ngIf="form.group.invalid && form.group.hasError('passwordDoesNotMatch')"
+            >
+              passwords do not match
+            </mat-error>
+          </span>
+          <span class="row">
+            <mat-form-field id="form-discord-handle">
+              <mat-label>discord handle</mat-label>
+              <input type="text" matInput formControlName="discord_handle" />
+              <mat-error
+                *ngIf="form.group.controls['discord_handle'].hasError('globalHandle')"
+                >cannot be a global handle</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field id="form-pronouns">
+              <mat-label>pronouns</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="be yourself!"
+                formControlName="pronouns"
+              />
+            </mat-form-field>
+          </span>
+          <span class="row">
+            <mat-form-field id="form-website">
+              <mat-label>website</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="e.g. github.com/<me>"
+                formControlName="website"
+              />
+            </mat-form-field>
+            <mat-checkbox type="text" formControlName="in_logan"
+              >in logan</mat-checkbox
+            >
+          </span>
+          <span class="row" id="bio-row">
+            <mat-form-field>
+              <mat-label>bio</mat-label>
+              <textarea
+                rows="7"
+                matInput
+                appearance="fill"
+                placeholder="bio"
+                formControlName="bio"
+              >
+              </textarea>
+            </mat-form-field>
+            <h4>{{ "bio preview" }}</h4>
+            <hr *ngIf="form.group.enabled" />
+            <div
+              [innerHTML]="form.group.controls['bio'].value || '<em>nothing to see :c</em>'"
+            ></div>
+            <hr />
+          </span>
+          <span class="row">
+            <mat-checkbox formControlName="agree"></mat-checkbox>
+            <span
+              >I understand all community interaction must align with the
+              <a class="hyperlink" routerLink="/code-of-conduct">
+                Code of Conduct</a
+              ></span
+            >
+          </span>
+          <span class="row">
+            <button
+              mat-stroked-button
+              type="submit"
+              color="accent"
+              [disabled]="form.group.pristine || form.group.invalid || status === 'loading'"
+            >
+              Register
+            </button>
+          </span>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-progress-bar
+          *ngIf="status !== 'loading'"
+          value="100"
+          color="primary"
+        ></mat-progress-bar>
+        <mat-progress-bar
+          *ngIf="status === 'loading'"
+          mode="indeterminate"
+          color="primary"
+        ></mat-progress-bar>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
